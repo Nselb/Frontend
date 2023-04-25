@@ -1,0 +1,23 @@
+<div>
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="codigo" autocomplete="off" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="contrasena" autocomplete="off" type="password">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Emisor</mat-label>
+            <mat-select formControlName="codigoEmisor"  required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let emisor of listaEmisores" [value]="emisor.codigo">
+                    {{emisor.nombreEmisor}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.hasError('required')">Escoger emisor</mat-error>
+        </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="login()" [disabled]="form.invalid">Login</button>
+</div>
