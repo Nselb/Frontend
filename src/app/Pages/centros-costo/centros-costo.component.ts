@@ -54,8 +54,10 @@ export class CentrosCostoComponent implements AfterViewInit, OnInit {
   }
 
   deleteCentro(centro: CentroCostos) {
-    this._ccService.delete(centro.codigo).subscribe({
+    this._ccService.delete(centro.codigo,centro.nombreCentroCostos).subscribe({
       next: res => {
+        console.log();
+        
         location.reload();
       }
     })

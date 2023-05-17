@@ -27,7 +27,7 @@ export class CentroCostosService {
     return this.client.put<CentroCostos>(`${this.apiUrl}/Update`, centro)
   }
 
-  delete(codigo: number): Observable<CentroCostos> {
-    return this.client.delete<CentroCostos>(`${this.apiUrl}/Delete/${codigo}`)
+  delete(codigo: number, descripcion: string): Observable<CentroCostos> {
+    return this.client.delete<CentroCostos>(`${this.apiUrl}/Delete/${codigo}/${descripcion}`)
   }
 }
