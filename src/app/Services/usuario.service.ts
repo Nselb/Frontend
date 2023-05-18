@@ -10,8 +10,7 @@ import { Usuario } from '../Interfaces/usuario';
 })
 export class UsuarioService {
 
-  private endpoint: string = environment.endPoint;
-  private apiUrl: string = this.endpoint + "Usuarios"
+  private apiUrl: string = environment.endPoint + "Usuarios"
 
   constructor(private client: HttpClient) { }
 

@@ -5,7 +5,10 @@ import { CentroCostos } from 'src/app/Interfaces/centro-costos';
 import { CentroCostosService } from 'src/app/Services/centro-costos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CentrosModalComponent } from 'src/app/Modals/centros-modal/centros-modal.component';
-import { InfoComponent } from 'src/app/Modals/info/info.component';
+import { AppComponent } from 'src/app/app.component';
+import { Router } from '@angular/router';
+import { DialogService } from 'src/app/Services/dialog.service';
+import { DialogComponent } from 'src/app/Modals/dialog/dialog.component';
 
 
 @Component({
@@ -14,11 +17,13 @@ import { InfoComponent } from 'src/app/Modals/info/info.component';
   styleUrls: ['./centros-costo.component.css']
 })
 export class CentrosCostoComponent implements AfterViewInit, OnInit {
+
   displayedColumns: string[] = ['Codigo', 'Nombre Centro De Costos', 'Acciones'];
   dataSource = new MatTableDataSource<CentroCostos>();
 
-  constructor(private _ccService: CentroCostosService, public dialog: MatDialog) {
-
+  constructor(private _ccService: CentroCostosService, public dialog: MatDialog, private appComponent: AppComponent, private _router: Router, private _dialogService: DialogService) {
+    localStorage.getItem('isLogged') !== 'true' ? this._router.navigateByUrl('/login') : () => { };
+    appComponent.autorizador = localStorage.getItem('isLoggedAutorizador') === 'true';
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -29,38 +34,41 @@ export class CentrosCostoComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.getCentrosCosto();
+    this.appComponent.isLogged = localStorage.getItem('isLogged') === 'true'
   }
 
   createCentro() {
-    this.dialog.open(CentrosModalComponent).afterClosed().subscribe({
-      next: res => {
-        location.reload();
+    this._dialogService.openDialog(CentrosModalComponent).afterClosed().subscribe({
+      next: () => {
+        this.getCentrosCosto();
       }
     });
   }
 
   editCentro(centro: CentroCostos) {
-    this.dialog.open(CentrosModalComponent, {
-      data: {
-        titulo: 'Editar',
-        btnText: 'Guardar',
-        centro: centro
-      }
-    }).afterClosed().subscribe({
-      next: res => {
-        location.reload();
+    this._dialogService.openDialog(CentrosModalComponent, undefined, undefined, centro).afterClosed().subscribe({
+      next: () => {
+        this.getCentrosCosto();
       }
     });
   }
 
   deleteCentro(centro: CentroCostos) {
-    this._ccService.delete(centro.codigo,centro.nombreCentroCostos).subscribe({
-      next: res => {
-        console.log();
-        
-        location.reload();
+    this._dialogService.openDialog(DialogComponent, { title: 'Confirmar', msg: 'Está seguro que desea borrar la entrada?' }, [
+      {
+        text: 'Si', action: () => {
+          this._ccService.delete(centro.codigo, centro.nombreCentroCostos).subscribe({
+            next: () => {
+              this.getCentrosCosto();
+            }
+          })
+        }
+      },
+      {
+        text: 'No',
+        action: () => { }
       }
-    })
+    ])
   }
 
   getCentrosCosto() {
@@ -74,4 +82,5 @@ export class CentrosCostoComponent implements AfterViewInit, OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
 }

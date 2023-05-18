@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <h1>Frontend</h1>
+    <span class="menu-spacer"></span>
+    <div *ngIf="isLogged == 0">
+        <button mat-button (click)="navigate('/login')">Iniciar Sesión</button>
+    </div>
+    <div *ngIf="isLogged == 1">
+        <p>{{userData.nombreUsuario}}</p>
+        <button mat-raised-button color="warn" (click)="logout()">Cerrar Sesión</button>
+    </div>
+</mat-toolbar>

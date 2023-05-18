@@ -30,28 +30,27 @@ export class CentrosModalComponent implements OnInit {
       nombreCentroCostos: this.form.value.descripcion
     }
     this._centrosService.insert(centro).subscribe({
-      next: (data) => {
-        location.reload()
-      },
-      error: (e) => { }
+      next: () => { },
+      error: () => { }
     })
   }
+
   editCentro() {
     const centro: CentroCostos = {
       codigo: this.form.value.codigo,
       nombreCentroCostos: this.form.value.descripcion
     }
     this._centrosService.update(centro).subscribe({
-      next: data => { },
-      error: err => { }
+      next: () => { },
+      error: () => { }
     })
   }
 
   ngOnInit(): void {
-    if (this.data) {
+    if (this.data.data) {
       this.form.patchValue({
-        codigo: this.data.centro.codigo,
-        descripcion: this.data.centro.nombreCentroCostos
+        codigo: this.data.data.codigo,
+        descripcion: this.data.data.nombreCentroCostos
       }
       )
     }

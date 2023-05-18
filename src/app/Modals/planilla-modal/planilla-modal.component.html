@@ -1,5 +1,4 @@
 <div>
-    <h1>Centro de Costo</h1>
     <form [formGroup]="form">
         <mat-form-field appearance="outline">
             <mat-label>Código</mat-label>
@@ -9,6 +8,10 @@
         <mat-form-field appearance="outline">
             <mat-label>Descripción</mat-label>
             <input matInput formControlName="descripcion" autocomplete="off" type="text">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" autocomplete="off" type="text">
         </mat-form-field>
     </form>
     <div mat-dialog-actions>

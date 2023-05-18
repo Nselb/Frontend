@@ -6,8 +6,10 @@ import { Emisor } from 'src/app/Interfaces/emisor';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { EmisorService } from 'src/app/Services/emisor.service';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { InfoComponent } from 'src/app/Modals/info/info.component';
+import { AppComponent } from 'src/app/app.component';
+import { NavbarService } from 'src/app/Services/navbar.service';
+import { DialogService } from 'src/app/Services/dialog.service';
+import { DialogComponent } from 'src/app/Modals/dialog/dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,9 @@ export class LoginComponent implements OnInit {
     private _usuarioService: UsuarioService,
     private _emisorService: EmisorService,
     private _router: Router,
-    public dialog: MatDialog
+    private _dialogService: DialogService,
+    private _appComponent: AppComponent,
+    private _navbarService: NavbarService
   ) {
     this.form = this.fb.group({
       codigo: ['', Validators.required],
@@ -40,31 +44,28 @@ export class LoginComponent implements OnInit {
         }, error: (e) => { }
       }
     )
+    let logged = localStorage.getItem('isLogged');
+    (logged === 'true' && logged) ? this._router.navigateByUrl('/centros') : () => { };
+
   }
 
   login() {
     this._usuarioService.get(this.form.value.codigo, this.form.value.contrasena).subscribe(val => {
       if (val.emisor === this.form.value.codigoEmisor) {
         localStorage.setItem('user', JSON.stringify(val));
-        this._router.navigateByUrl('/')
+        localStorage.setItem('isLogged', 'true');
+        this._navbarService.reloadNavbar();
+        this._appComponent.isLogged = true;
+        this._router.navigateByUrl('/centros')
       } else {
         this._router.navigateByUrl('/login')
-        this.openDialog('Error', 'Emisor incorrecto!')
+        this._dialogService.openDialog(DialogComponent, { title: 'Error', msg: 'Emisor incorrecto!' }, [{ text: 'Cerrar', action: () => { } }])
       }
       if (val.observacion !== 'INGRESO EXITOSO') {
         this._router.navigateByUrl('/login')
-        this.openDialog('Error', 'Contraseña incorrecta!')
+        this._dialogService.openDialog(DialogComponent, { title: 'Error', msg: 'Contraseña incorrecta!' }, [{ text: 'Cerrar', action: () => { } }])
       }
     })
-  }
-
-  openDialog(title: string, msg: string) {
-    this.dialog.open(InfoComponent, {
-      data: {
-        title: title,
-        msg: msg
-      }
-    });
   }
 
   ngOnInit(): void {

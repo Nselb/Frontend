@@ -1,0 +1,46 @@
+<div class="mat-elevation-z8">
+    <button mat-raised-button color="primary" (click)="createMovimiento()">Nuevo Movimiento Planilla</button>
+    <mat-form-field appearance="standard">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="Concepto">
+            <th mat-header-cell *matHeaderCellDef> Concepto </th>
+            <td mat-cell *matCellDef="let movimiento"> {{movimiento.concepto}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Tipo Operación">
+            <th mat-header-cell *matHeaderCellDef> Tipo Operación </th>
+            <td mat-cell *matCellDef="let movimiento"> {{movimiento.tipoOperacion}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Movimiento Excepción 1">
+            <th mat-header-cell *matHeaderCellDef> Movimiento Excepción 1 </th>
+            <td mat-cell *matCellDef="let movimiento"> {{movimiento.movimientoExcepcion1}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Movimiento Excepción 2">
+            <th mat-header-cell *matHeaderCellDef> Movimiento Excepción 2 </th>
+            <td mat-cell *matCellDef="let movimiento"> {{movimiento.movimientoExcepcion2}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Movimiento Excepción 3">
+            <th mat-header-cell *matHeaderCellDef> Movimiento Excepción 3 </th>
+            <td mat-cell *matCellDef="let movimiento"> {{movimiento.movimientoExcepcion3}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let movimiento">
+                <button mat-icon-button color="primary" (click)="{}">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteMovimiento(movimiento)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
+</div>

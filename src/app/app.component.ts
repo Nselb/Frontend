@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { DialogService } from './Services/dialog.service';
+import { LoginModalComponent } from './Modals/login-modal/login-modal.component';
 import { Router } from '@angular/router';
+import { AutorizadorService } from './Services/autorizador.service';
+import { DialogComponent } from './Modals/dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -7,23 +11,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Frontend';
-  isLogged: number;
+  isLogged = false;
+  autorizador = false;
 
-  constructor(private _router: Router) {
-    this.isLogged = 0;
-    if (localStorage.getItem('user')) {
-      this.isLogged = 1;
-    }
+  constructor(private _dialog: DialogService, private _router: Router, private _autorizadorService: AutorizadorService) {
+    this.autorizador = localStorage.getItem('isLoggedAutorizador') ? true : false;
+  }
+
+  autorizadorLoginDialog() {
+    this._dialog.openDialog(LoginModalComponent, { title: 'Iniciar Sesión Como Autorizador' }, [{ text: '', action: (user: number, password: string) => { this.autorizadorLogin(user, password) } }])
+  }
+
+  autorizadorLogin(user: number, password: string) {
+    this._autorizadorService.get(user, password).subscribe(val => {
+      if (val.observacion === 'INGRESO EXITOSO') {
+        this.autorizador = true;
+        localStorage.setItem('isLoggedAutorizador', 'true');
+      } else {
+        this._dialog.openDialog(DialogComponent, { title: 'Error!', msg: val.observacion }, [{ text: 'Cerrar', action: () => { } }])
+      }
+    })
+  }
+
+  autorizadorLogout() {
+    this.autorizador = false;
+    localStorage.removeItem('isLoggedAutorizador');
+    this.navigate('/centros')
   }
 
   navigate(uri: string) {
-    this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => this._router.navigate([uri]));
-  }
-
-  logout() {
-    localStorage.clear()
-    this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => this._router.navigate(['/login']));
+    this._router.navigateByUrl(uri);
   }
 
 }

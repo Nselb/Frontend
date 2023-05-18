@@ -22,19 +22,28 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './Pages/login/login.component';
-import { InfoComponent } from './Modals/info/info.component';
+import { DialogComponent } from './Modals/dialog/dialog.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CentrosCostoComponent } from './Pages/centros-costo/centros-costo.component';
 import { CentrosModalComponent } from './Modals/centros-modal/centros-modal.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { LoginModalComponent } from './Modals/login-modal/login-modal.component';
+import { MovimientoPlanillaComponent } from './Pages/movimiento-planilla/movimiento-planilla.component';
+import { PlanillaModalComponent } from './Modals/planilla-modal/planilla-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    InfoComponent,
+    DialogComponent,
     CentrosCostoComponent,
-    CentrosModalComponent
+    CentrosModalComponent,
+    NavbarComponent,
+    LoginModalComponent,
+    MovimientoPlanillaComponent,
+    PlanillaModalComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +59,8 @@ import { CentrosModalComponent } from './Modals/centros-modal/centros-modal.comp
     MatSelectModule,
     MatIconModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

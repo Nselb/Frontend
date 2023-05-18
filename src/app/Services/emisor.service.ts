@@ -11,8 +11,7 @@ import { Emisor } from '../Interfaces/emisor';
 
 export class EmisorService {
 
-  private endpoint: string = environment.endPoint;
-  private apiUrl: string = this.endpoint + "Emisor"
+  private apiUrl: string = environment.endPoint + "Emisor"
 
   constructor(private client: HttpClient) { }
 

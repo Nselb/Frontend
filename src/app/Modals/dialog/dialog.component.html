@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>{{data.texts.title}}</h1>
+<div mat-dialog-content>{{data.texts.msg}}</div>
+<div mat-dialog-actions>
+    <button mat-button *ngFor="let button of data.buttonConfig" (click)="onButtonClick(button.action)">{{ button.text }}</button>
+</div>

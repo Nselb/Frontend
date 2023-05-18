@@ -10,8 +10,7 @@ import { CentroCostos } from '../Interfaces/centro-costos';
 })
 export class CentroCostosService {
 
-  private endpoint: string = environment.endPoint;
-  private apiUrl: string = this.endpoint + "CentroCostos"
+  private apiUrl: string = environment.endPoint + "CentroCostos"
 
   constructor(private client: HttpClient) { }
 

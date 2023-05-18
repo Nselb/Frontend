@@ -1,13 +1,16 @@
-<mat-toolbar color="primary">
-    <h1>AJA</h1>
-    <span class="menu-spacer"></span>
-    <div *ngIf="isLogged == 0">
-        <button mat-button (click)="navigate('/login')">Iniciar Sesión</button>
-    </div>
-    <div *ngIf="isLogged == 1">
-        <button mat-button (click)="navigate('/centros')">Centros de Costo</button>
-        <button mat-button (click)="logout()">Cerrar Sesión</button>
-    </div>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+<app-navbar />
+<mat-sidenav-container class="example-container">
+    <mat-sidenav *ngIf="isLogged && autorizador" mode="side" opened>
+        <button mat-button color="primary" (click)="navigate('/centros')">Centro Costos</button>
+        <button mat-button color="primary" (click)="navigate('/movimientos')">Movimientos Planilla</button>
+        <button mat-button color="primary" (click)="navigate('/trabajadores')">Trabajadores</button>
+        <button mat-raised-button color="warn" (click)="autorizadorLogout()">Cerrar Sesión Como Autorizador</button>
+    </mat-sidenav>
+    <mat-sidenav *ngIf="isLogged && !autorizador" mode="side" opened>
+        <button mat-raised-button color="primary" (click)="autorizadorLoginDialog()">Iniciar Sesion Como
+            Autorizador</button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet />
+    </mat-sidenav-content>
+</mat-sidenav-container>
