@@ -1,7 +1,7 @@
 <div class="mat-elevation-z8">
     <mat-form-field appearance="standard">
-        <mat-label>Coso</mat-label>
-        <input matInput #sucursal type="number">
+        <mat-label>Sucursal</mat-label>
+        <input matInput #sucursal type="text" oninput="{this.value=this.value.replace(/[^0-9]/g,'');}">
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="getMovimientos(+sucursal.value)" class="btn-new">Buscar
         Sucursal</button>
