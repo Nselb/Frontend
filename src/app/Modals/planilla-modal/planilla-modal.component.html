@@ -1,23 +1,98 @@
 <div>
     <form [formGroup]="form">
         <mat-form-field appearance="outline">
-            <mat-label>Código</mat-label>
-            <input matInput formControlName="codigo" autocomplete="off" type="text"
+            <mat-label>Concepto</mat-label>
+            <input matInput formControlName="concepto" autocomplete="off" type="text">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Prioridad</mat-label>
+            <input matInput formControlName="prioridad" autocomplete="off" type="text"
                 oninput="{this.value=this.value.replace(/[^0-9]/g,'');}">
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Descripción</mat-label>
-            <input matInput formControlName="descripcion" autocomplete="off" type="text">
+            <mat-label>Tipo Operación</mat-label>
+            <mat-select matInput formControlName="tipoOperacion">
+                <mat-option>Escoger tipo de operación...</mat-option>
+                <mat-option *ngFor="let op of tipoOperacion" [value]="op.codigoTipooperacion">
+                    {{op.nombreOperacion}} - {{op.codigoTipooperacion}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Nombre</mat-label>
-            <input matInput formControlName="nombre" autocomplete="off" type="text">
+            <mat-label>Cuenta 1</mat-label>
+            <input matInput formControlName="cuenta1" autocomplete="off" type="text">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cuenta 2</mat-label>
+            <input matInput formControlName="cuenta2" autocomplete="off" type="text">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cuenta 3</mat-label>
+            <input matInput formControlName="cuenta3" autocomplete="off" type="text">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cuenta 4</mat-label>
+            <input matInput formControlName="cuenta4" autocomplete="off" type="text">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Movimiento Excepción 1</mat-label>
+            <mat-select matInput formControlName="movExcepcion1">
+                <mat-option>Escoger movimiento excepción...</mat-option>
+                <mat-option *ngFor="let mov of movExcepcion1" [value]="mov.desripMovimientoExce">
+                    {{mov.desripMovimientoExce}} - {{mov.codigoMovimientoExce}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Movimiento Excepción 2</mat-label>
+            <mat-select matInput formControlName="movExcepcion2">
+                <mat-option>Escoger movimiento excepción...</mat-option>
+                <mat-option *ngFor="let mov of movExcepcion2" [value]="mov.desripMovimientoExce">
+                    {{mov.desripMovimientoExce}} - {{mov.codigoMovimientoExce}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Movimiento Excepción 3</mat-label>
+            <mat-select matInput formControlName="movExcepcion3">
+                <mat-option>Escoger movimiento excepción...</mat-option>
+                <mat-option *ngFor="let mov of movExcepcion3" [value]="mov.desripMovimientoExce">
+                    {{mov.desripMovimientoExce}} - {{mov.codigoMovimientoExce}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Aplica IESS</mat-label>
+            <mat-select matInput formControlName="aplicaIess">
+                <mat-option>Escoger...</mat-option>
+                <mat-option *ngFor="let afecta of afectaIess" [value]="afecta.desripMovimientoExce">
+                    {{afecta.desripMovimientoExce}} - {{afecta.codigoMovimientoExce}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Aplica Impuesto Renta</mat-label>
+            <mat-select matInput formControlName="aplicaIR">
+                <mat-option>Escoger...</mat-option>
+                <mat-option *ngFor="let afecta of afectaImpuestoRenta" [value]="afecta.desripMovimientoExce">
+                    {{afecta.desripMovimientoExce}} - {{afecta.codigoMovimientoExce}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Empresa Afecta Iess</mat-label>
+            <mat-select matInput formControlName="empAfectaIess">
+                <mat-option>Escoger...</mat-option>
+                <mat-option *ngFor="let afecta of afectaImpuestoRenta" [value]="afecta.desripMovimientoExce">
+                    {{afecta.desripMovimientoExce}} - {{afecta.codigoMovimientoExce}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </form>
     <div mat-dialog-actions>
-        <button *ngIf="!data.data" mat-raised-button mat-dialog-close color="primary" (click)="createCentro()"
+        <button *ngIf="!data.data" mat-raised-button mat-dialog-close color="primary" (click)="createPlanilla()"
             [disabled]="form.invalid">Crear</button>
-        <button *ngIf="data.data" mat-raised-button mat-dialog-close color="primary" (click)="editCentro()"
+        <button *ngIf="data.data" mat-raised-button mat-dialog-close color="primary" (click)="editPlanilla()"
             [disabled]="form.invalid">Guardar</button>
         <button mat-button mat-dialog-close>Close</button>
     </div>

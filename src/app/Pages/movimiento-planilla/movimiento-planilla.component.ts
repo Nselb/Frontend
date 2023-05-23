@@ -55,6 +55,15 @@ export class MovimientoPlanillaComponent implements AfterViewInit, OnInit {
     });
   }
 
+  editPlanilla(planilla: MovimientoPlanilla) {
+    this._dialogService.openDialog(PlanillaModalComponent, undefined, undefined, planilla).afterClosed().subscribe({
+      next: () => {
+        this.getMovimientos();
+      }
+    });
+  }
+
+
   deleteMovimiento(movimiento: MovimientoPlanilla) {
     this._dialogService.openDialog(DialogComponent, { title: 'Confirmar', msg: 'Está seguro que desea borrar la entrada?' }, [
       {

@@ -28,7 +28,7 @@
         <ng-container matColumnDef="Acciones">
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
             <td mat-cell *matCellDef="let movimiento">
-                <button mat-icon-button color="primary" (click)="{}">
+                <button mat-icon-button color="primary" (click)="editPlanilla(movimiento)">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="warn" (click)="deleteMovimiento(movimiento)">
