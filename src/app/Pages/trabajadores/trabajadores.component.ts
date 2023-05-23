@@ -63,13 +63,14 @@ export class TrabajadoresComponent implements AfterViewInit, OnInit {
   }
 
 
-  deleteMovimiento(movimiento: Trabajador) {/*
+  deleteMovimiento(movimiento: Trabajador) {
     this._dialogService.openDialog(DialogComponent, { title: 'Confirmar', msg: 'Está seguro que desea borrar la entrada?' }, [
       {
         text: 'Si', action: () => {
-          this._mpService.delete(movimiento.codigoConcepto, movimiento.concepto).subscribe({
+          this._mpService.delete(movimiento.comP_Codigo, movimiento.id_Trabajador).subscribe({
             next: () => {
-              this.getMovimientos(1);
+              console.log(movimiento);
+              this.getMovimientos(movimiento.comP_Codigo);
             }
           })
         }
@@ -79,7 +80,7 @@ export class TrabajadoresComponent implements AfterViewInit, OnInit {
         action: () => { }
       }
     ])
-  */}
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

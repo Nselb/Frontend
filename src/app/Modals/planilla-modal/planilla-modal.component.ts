@@ -5,10 +5,8 @@ import { Afecta } from 'src/app/Interfaces/afecta';
 import { MovimientoExcepcion } from 'src/app/Interfaces/movimiento-excepcion';
 import { MovimientoPlanilla } from 'src/app/Interfaces/movimiento-planilla';
 import { TipoOperacion } from 'src/app/Interfaces/tipo-operacion';
-import { AfectaService } from 'src/app/Services/afecta.service';
 import { MovimientoPlanillaService } from 'src/app/Services/movimiento-planilla.service';
-import { MovimientosExcepcionService } from 'src/app/Services/movimientos-excepcion.service';
-import { TipoOperacionService } from 'src/app/Services/tipo-operacion.service';
+import { VariosService } from 'src/app/Services/varios.service';
 
 
 @Component({
@@ -28,10 +26,8 @@ export class PlanillaModalComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private _tipoOperacionService: TipoOperacionService,
-    private _movExcepcionService: MovimientosExcepcionService,
     private _planillaService: MovimientoPlanillaService,
-    private _afectaService: AfectaService,
+    private _variosService: VariosService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.fb.group({
@@ -49,42 +45,42 @@ export class PlanillaModalComponent implements OnInit {
       tipoOperacion: ['', Validators.required],
       empAfectaIess: ['', Validators.required]
     })
-    this._tipoOperacionService.getAll().subscribe(
+    this._variosService.getTipoOperacion().subscribe(
       {
         next: (data) => {
           this.tipoOperacion = data;
         }
       }
     )
-    this._movExcepcionService.getMov1y2().subscribe(
+    this._variosService.getMov1y2().subscribe(
       {
         next: (data) => {
           this.movExcepcion1 = data;
         }
       }
     )
-    this._movExcepcionService.getMov1y2().subscribe(
+    this._variosService.getMov1y2().subscribe(
       {
         next: (data) => {
           this.movExcepcion2 = data;
         }
       }
     )
-    this._movExcepcionService.getMov3().subscribe(
+    this._variosService.getMov3().subscribe(
       {
         next: (data) => {
           this.movExcepcion3 = data;
         }
       }
     )
-    this._afectaService.getAfectaIess().subscribe(
+    this._variosService.getAfectaIess().subscribe(
       {
         next: (data) => {
           this.afectaIess = data;
         }
       }
     )
-    this._afectaService.getAfectaImpuestoRenta().subscribe(
+    this._variosService.getAfectaImpuestoRenta().subscribe(
       {
         next: (data) => {
           this.afectaImpuestoRenta = data;
@@ -124,20 +120,20 @@ export class PlanillaModalComponent implements OnInit {
         codigo = data[0].codigoConcepto;
         const planilla: MovimientoPlanilla = {
           codigoConcepto: codigo,
-          aplica_iess: this._afectaService.getById(this.form.value.aplicaIess),
-          aplica_imp_renta: this._afectaService.getById(this.form.value.aplicaIR),
+          aplica_iess: this._variosService.getAfectaById(this.form.value.aplicaIess),
+          aplica_imp_renta: this._variosService.getAfectaById(this.form.value.aplicaIR),
           concepto: this.form.value.concepto,
           cuenta1: this.form.value.cuenta1,
           cuenta2: this.form.value.cuenta2,
           cuenta3: this.form.value.cuenta3,
           cuenta4: this.form.value.cuenta4,
-          empresa_Afecta_Iess: this._afectaService.getById(this.form.value.empAfectaIess),
+          empresa_Afecta_Iess: this._variosService.getAfectaById(this.form.value.empAfectaIess),
           mensaje: '',
-          movimientoExcepcion1: this._movExcepcionService.getMov1y2ById(this.form.value.movExcepcion1),
-          movimientoExcepcion2: this._movExcepcionService.getMov1y2ById(this.form.value.movExcepcion2),
-          movimientoExcepcion3: this._movExcepcionService.getMov3ById(this.form.value.movExcepcion3),
+          movimientoExcepcion1: this._variosService.getMov1y2ById(this.form.value.movExcepcion1),
+          movimientoExcepcion2: this._variosService.getMov1y2ById(this.form.value.movExcepcion2),
+          movimientoExcepcion3: this._variosService.getMov3ById(this.form.value.movExcepcion3),
           prioridad: this.form.value.prioridad,
-          tipoOperacion: this._tipoOperacionService.getById(this.form.value.tipoOperacion)
+          tipoOperacion: this._variosService.getOperacionById(this.form.value.tipoOperacion)
         }
         console.log(planilla);
         this._planillaService.update(planilla).subscribe({
