@@ -41,10 +41,10 @@ export class VariosService {
     return this.client.get<Info[]>(`${this.apiUrl}/TipoCuenta`)
   }
   getAfectaIess(): Observable<Afecta[]> {
-    return this.client.get<Afecta[]>(`${this.apiUrl}IESS`)
+    return this.client.get<Afecta[]>(`${this.apiUrl}/AfectaIESS`)
   }
   getAfectaImpuestoRenta(): Observable<Afecta[]> {
-    return this.client.get<Afecta[]>(`${this.apiUrl}ImpuestoRenta`)
+    return this.client.get<Afecta[]>(`${this.apiUrl}/AfectaImpuestoRenta`)
   }
   getAfectaById(id: string): string {
     if (id === 'Si Aplica') {
