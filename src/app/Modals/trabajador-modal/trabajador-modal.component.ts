@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Info } from 'src/app/Interfaces/info';
+import { Trabajador } from 'src/app/Interfaces/trabajador';
+import { TrabajadorService } from 'src/app/Services/trabajador.service';
+import { VariosService } from 'src/app/Services/varios.service';
 
 @Component({
   selector: 'app-trabajador-modal',
@@ -21,43 +24,151 @@ export class TrabajadorModalComponent implements OnInit {
   tipoCuenta: Info[] = [];
   constructor(
     private fb: FormBuilder,
+    private _variosService: VariosService,
+    private _trabajadorService: TrabajadorService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.fb.group({
-      concepto: ['', Validators.required],
-      prioridad: ['', Validators.required],
-      cuenta1: ['', Validators.required],
-      cuenta2: ['', Validators.required],
-      cuenta3: ['', Validators.required],
-      cuenta4: ['', Validators.required],
-      movExcepcion1: ['', Validators.required],
-      movExcepcion2: ['', Validators.required],
-      movExcepcion3: ['', Validators.required],
-      aplicaIess: ['', Validators.required],
-      aplicaIR: ['', Validators.required],
-      tipoOperacion: ['', Validators.required],
-      empAfectaIess: ['', Validators.required]
+      codigoCompania: ['', Validators.required],
+      nombres: ['', Validators.required],
+      tipoDeTrabajdor: ['', Validators.required],
+      apellidoPaterno: ['', Validators.required],
+      apellidoMaterno: ['', Validators.required],
+      identificacion: ['', Validators.required],
+      entidadBancaria: ['', Validators.required],
+      carnetIess: ['', Validators.required],
+      direccion: ['', Validators.required],
+      telefonoFijo: ['', Validators.required],
+      telefonoMovil: ['', Validators.required],
+      genero: ['', Validators.required],
+      numeroCuentaBancaria: ['', Validators.required],
+      ocupacion: ['', Validators.required],
+      centroCostos: ['', Validators.required],
+      nivelSalarial: ['', Validators.required],
+      estadoTrabajador: ['', Validators.required],
+      tipoDeContrato: ['', Validators.required],
+      tipoCese: ['', Validators.required],
+      estadoCivil: ['', Validators.required],
+      tipoDeComision: ['', Validators.required],
+      fechaDeNacimiento: ['', Validators.required],
+      FechaDeIngreso: ['', Validators.required],
+      FechaDeCese: ['', Validators.required],
+      periodoDeVacaciones: ['', Validators.required],
+      FechaDeReingreso: ['', Validators.required],
+      esReingreso: ['', Validators.required],
+      bancoCuentaCorriente: ['', Validators.required],
+      tipoDeCuenta: ['', Validators.required],
+      fromaCalculo13ro: ['', Validators.required],
+      fromaCalculo14to: ['', Validators.required],
+      bonificacionComplemantaria: ['', Validators.required],
+      bonificacionEspecial: ['', Validators.required],
+      remuneracionMinima: ['', Validators.required],
+      cuotaCuentaCorriente: ['', Validators.required],
+      fondoReserva: ['', Validators.required],
+      codigoCategoriaOcupacion: ['', Validators.required]
+    })
+    this._variosService.getEsReingreso().subscribe({
+      next: data => {
+        this.esReingreso = data;
+      }
+    })
+    this._variosService.getEstadoCivil().subscribe({
+      next: data => {
+        this.estadoCivil = data;
+      }
+    })
+    this._variosService.getEstadoTrabajador().subscribe({
+      next: data => {
+        this.estadoTrabajador = data;
+      }
+    })
+    this._variosService.getGenero().subscribe({
+      next: data => {
+        this.genero = data;
+      }
+    })
+    this._variosService.getTipoCese().subscribe({
+      next: data => {
+        this.tipoCese = data;
+      }
+    })
+    this._variosService.getTipoContrato().subscribe({
+      next: data => {
+        this.tipoContrato = data;
+      }
+    })
+    this._variosService.getTipoCuenta().subscribe({
+      next: data => {
+        this.tipoCuenta = data;
+      }
+    })
+    this._variosService.getTipoTrabajador().subscribe({
+      next: data => {
+        this.tipoTrabajador = data;
+      }
     })
   }
+
   ngOnInit(): void {
     if (this.data.data) {
       console.log(this.data.data);
       this.form.patchValue({
-        concepto: this.data.data.concepto,
-        prioridad: this.data.data.prioridad,
-        cuenta1: this.data.data.cuenta1,
-        cuenta2: this.data.data.cuenta2,
-        cuenta3: this.data.data.cuenta3,
-        cuenta4: this.data.data.cuenta4,
-        movExcepcion1: this.data.data.movimientoExcepcion1,
-        movExcepcion2: this.data.data.movimientoExcepcion2,
-        movExcepcion3: this.data.data.movimientoExcepcion3,
-        aplicaIess: this.data.data.aplica_iess,
-        aplicaIR: this.data.data.aplica_imp_renta,
-        tipoOperacion: this.data.data.tipoOperacion,
-        empAfectaIess: this.data.data.empresa_Afecta_Iess,
       }
       )
     }
+  }
+  createTrabajador() {
+    const trabajador: Trabajador = {
+      apellido_Materno: this.form.value.apellidoMaterno,
+      apellido_Paterno: this.form.value.apellidoPaterno,
+      año_Ult_Rsva_Indemni: 0,
+      bancoCTA_CTE: this.form.value.bancoCuentaCorriente,
+      boniComplementaria: this.form.value.bonificacionComplementaria,
+      boniEspecial: this.form.value.bonificacionEspecial,
+      carnetIESS: this.form.value.carnetIess,
+      centro_Costos: this.form.value.centroCostos,
+      codigo_Categoria_Ocupacion: this.form.value.codigoCategoriaOcupacion,
+      comP_Codigo: this.form.value.codigoCompania,
+      cuotaCuentaCorriente: this.form.value.cuotaCuentaCOrriente,
+      direccion: this.form.value.direccion,
+      entidad_Bancaria: this.form.value.entidadBancaria,
+      esReingreso: this.form.value.esReingreso,
+      estadoCivil: this.form.value.estadoCivil,
+      estadoTrabajador: this.form.value.estadoTrabajador,
+      fecha_Ult_Actualizacion: new Date(),
+      fechaCese: this.form.value.FechaDeCese,
+      fechaIngreso: new Date(),
+      fechaNacimiento: this.form.value.fechaDeNacimiento,
+      fechaReingreso: this.form.value.FechaDeReingreso,
+      fondo_Reserva: this.form.value.fondoReserva,
+      formaCalculo13ro: this.form.value.formaCalculo13ro,
+      formaCalculo14ro: this.form.value.fromaCalculo14to,
+      genero: this.form.value.genero,
+      id_Trabajador: 0,
+      identificacion: this.form.value.identificacion,
+      mensaje: '',
+      mes_Ult_Rsva_Indemni: 0,
+      nivel_Salarial: this.form.value.nivelSalarial,
+      nombres: this.form.value.nombres,
+      nro_Cuenta_Bancaria: this.form.value.numeroCuentaBancaria,
+      ocupacion: this.form.value.ocupacion,
+      periododeVacaciones: this.form.value.periodoDeVacaciones,
+      remuneracion_Minima: this.form.value.remuneracionMinima,
+      rsV_Indem_Acumul: 0,
+      telefono_Fijo: this.form.value.telefonoFijo,
+      telefono_Movil: this.form.value.telefonoMovil,
+      tipo_Cese: this.form.value.tipoCese,
+      tipo_Contrato: this.form.value.tipoContrato,
+      tipo_Cuenta: this.form.value.tipoCuenta,
+      tipo_trabajador: this.form.value.tipoTrabajador,
+      tipodeComision: this.form.value.tipodeComision
+    }
+    this._trabajadorService.insert(trabajador).subscribe({
+      next: () => { },
+      error: () => { }
+    })
+  }
+  editTrabajador() {
+
   }
 }

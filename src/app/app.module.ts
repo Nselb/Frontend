@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { DialogComponent } from './Modals/dialog/dialog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { CentrosCostoComponent } from './Pages/centros-costo/centros-costo.component';
 import { CentrosModalComponent } from './Modals/centros-modal/centros-modal.component';
@@ -60,6 +61,7 @@ import { TrabajadorModalComponent } from './Modals/trabajador-modal/trabajador-m
     MatDialogModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatDatepickerModule,
     MatGridListModule
   ],
   providers: [],
