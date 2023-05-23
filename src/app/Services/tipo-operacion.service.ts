@@ -16,4 +16,10 @@ export class TipoOperacionService {
   getAll(): Observable<TipoOperacion[]> {
     return this.client.get<TipoOperacion[]>(`${this.apiUrl}`)
   }
+  getById(id: string): string {
+    if (id === 'Egreso') {
+      return 'E';
+    }
+    return 'I';
+  }
 }

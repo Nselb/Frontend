@@ -16,7 +16,7 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class MovimientoPlanillaComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['Concepto', 'Tipo Operación', 'Movimiento Excepción 1', 'Movimiento Excepción 2', 'Movimiento Excepción 3', 'Acciones'];
+  displayedColumns: string[] = ['Concepto', 'Tipo Operación', 'Movimiento Excepción 1', 'Movimiento Excepción 2', 'Movimiento Excepción 3', 'Aplica Impuesto Renta','Acciones'];
   dataSource = new MatTableDataSource<MovimientoPlanilla>();
 
 

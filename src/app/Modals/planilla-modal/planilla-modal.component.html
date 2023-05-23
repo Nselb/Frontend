@@ -74,7 +74,7 @@
             <mat-label>Aplica Impuesto Renta</mat-label>
             <mat-select matInput formControlName="aplicaIR">
                 <mat-option>Escoger...</mat-option>
-                <mat-option *ngFor="let afecta of afectaImpuestoRenta" [value]="afecta.desripMovimientoExce">
+                <mat-option *ngFor="let afecta of afectaImpuestoRenta" [value]="afecta.desripMovimientoExce.trim()">
                     {{afecta.desripMovimientoExce}} - {{afecta.codigoMovimientoExce}}
                 </mat-option>
             </mat-select>
@@ -83,7 +83,7 @@
             <mat-label>Empresa Afecta Iess</mat-label>
             <mat-select matInput formControlName="empAfectaIess">
                 <mat-option>Escoger...</mat-option>
-                <mat-option *ngFor="let afecta of afectaImpuestoRenta" [value]="afecta.desripMovimientoExce">
+                <mat-option *ngFor="let afecta of afectaIess" [value]="afecta.desripMovimientoExce">
                     {{afecta.desripMovimientoExce}} - {{afecta.codigoMovimientoExce}}
                 </mat-option>
             </mat-select>

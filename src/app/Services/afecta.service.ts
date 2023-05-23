@@ -19,4 +19,12 @@ export class AfectaService {
   getAfectaImpuestoRenta(): Observable<Afecta[]> {
     return this.client.get<Afecta[]>(`${this.apiUrl}ImpuestoRenta`)
   }
+  getById(id: string): string {
+    if (id === 'Si Aplica') {
+      return '1'
+    } else if (id === 'No Aplica') {
+      return '0'
+    }
+    return id
+  }
 }

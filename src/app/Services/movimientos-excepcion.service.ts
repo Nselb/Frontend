@@ -37,10 +37,8 @@ export class MovimientosExcepcionService {
         return 'C';
       case 'Sierra':
         return 'S';
-      case 'No Procesar':
-        return 'X';
       default:
-        return '';
+        return 'X';
     }
   }
 

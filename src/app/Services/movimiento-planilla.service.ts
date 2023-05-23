@@ -17,8 +17,8 @@ export class MovimientoPlanillaService {
     return this.client.get<MovimientoPlanilla[]>(`${this.apiUrl}`)
   }
 
-  get(descripcion: string): Observable<MovimientoPlanilla> {
-    return this.client.get<MovimientoPlanilla>(`${this.apiUrl}/Search?descripcion=${descripcion}`)
+  get(descripcion: string): Observable<MovimientoPlanilla[]> {
+    return this.client.get<MovimientoPlanilla[]>(`${this.apiUrl}/Search?descripcion=${descripcion}`)
   }
 
   insert(centro: MovimientoPlanilla): Observable<MovimientoPlanilla> {

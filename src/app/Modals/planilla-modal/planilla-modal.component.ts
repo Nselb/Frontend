@@ -120,27 +120,31 @@ export class PlanillaModalComponent implements OnInit {
     let codigo = 0;
     this._planillaService.get(this.form.value.concepto).subscribe({
       next: (data) => {
-        codigo = data.codigoConcepto;
+        codigo = data[0].codigoConcepto;
+        const planilla: MovimientoPlanilla = {
+          codigoConcepto: codigo,
+          aplica_iess: this._afectaService.getById(this.form.value.aplicaIess),
+          aplica_imp_renta: this._afectaService.getById(this.form.value.aplicaIR),
+          concepto: this.form.value.concepto,
+          cuenta1: this.form.value.cuenta1,
+          cuenta2: this.form.value.cuenta2,
+          cuenta3: this.form.value.cuenta3,
+          cuenta4: this.form.value.cuenta4,
+          empresa_Afecta_Iess: this._afectaService.getById(this.form.value.empAfectaIess),
+          mensaje: '',
+          movimientoExcepcion1: this._movExcepcionService.getMov1y2ById(this.form.value.movExcepcion1),
+          movimientoExcepcion2: this._movExcepcionService.getMov1y2ById(this.form.value.movExcepcion2),
+          movimientoExcepcion3: this._movExcepcionService.getMov3ById(this.form.value.movExcepcion3),
+          prioridad: this.form.value.prioridad,
+          tipoOperacion: this._tipoOperacionService.getById(this.form.value.tipoOperacion)
+        }
+        console.log(planilla);
+        this._planillaService.update(planilla).subscribe({
+          next: () => { },
+          error: () => { }
+        })
       }
     })
-    const planilla: MovimientoPlanilla = {
-      codigoConcepto: codigo,
-      aplica_iess: this.form.value.aplicaIess,
-      aplica_imp_renta: this.form.value.aplicaIR,
-      concepto: this.form.value.concepto,
-      cuenta1: this.form.value.cuenta1,
-      cuenta2: this.form.value.cuenta2,
-      cuenta3: this.form.value.cuenta3,
-      cuenta4: this.form.value.cuenta4,
-      empresa_Afecta_Iess: this.form.value.empAfectaIess,
-      mensaje: '',
-      movimientoExcepcion1: this._movExcepcionService.getMov1y2ById(this.form.value.movExcepcion1),
-      movimientoExcepcion2: this._movExcepcionService.getMov1y2ById(this.form.value.movExcepcion2),
-      movimientoExcepcion3: this._movExcepcionService.getMov3ById(this.form.value.movExcepcion3),
-      prioridad: this.form.value.prioridad,
-      tipoOperacion: this.form.value.tipoOperacion
-    }
-    console.log(planilla);  
   }
 
   ngOnInit(): void {
@@ -158,7 +162,8 @@ export class PlanillaModalComponent implements OnInit {
         movExcepcion3: this.data.data.movimientoExcepcion3,
         aplicaIess: this.data.data.aplica_iess,
         aplicaIR: this.data.data.aplica_imp_renta,
-        tipoOperacion: this.data.data.tipoOperacion
+        tipoOperacion: this.data.data.tipoOperacion,
+        empAfectaIess: this.data.data.empresa_Afecta_Iess,
       }
       )
     }
