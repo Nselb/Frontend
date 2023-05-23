@@ -1,18 +1,19 @@
 <div>
 
     <form [formGroup]="form" class="grid-container">
-        <mat-form-field appearance="outline" class="grid-item">
+
+        <mat-form-field appearance="outline" class="grid-item1">
             <mat-label>Concepto</mat-label>
             <input matInput formControlName="concepto" autocomplete="off" type="text">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item2">
             <mat-label>Prioridad</mat-label>
             <input matInput formControlName="prioridad" autocomplete="off" type="text"
                 oninput="{this.value=this.value.replace(/[^0-9]/g,'');}">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item3">
             <mat-label>Tipo Operación</mat-label>
             <mat-select matInput formControlName="tipoOperacion">
                 <mat-option>Escoger tipo de operación...</mat-option>
@@ -22,27 +23,27 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item4">
             <mat-label>Cuenta 1</mat-label>
             <input matInput formControlName="cuenta1" autocomplete="off" type="text">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item5">
             <mat-label>Cuenta 2</mat-label>
             <input matInput formControlName="cuenta2" autocomplete="off" type="text">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item6">
             <mat-label>Cuenta 3</mat-label>
             <input matInput formControlName="cuenta3" autocomplete="off" type="text">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item7">
             <mat-label>Cuenta 4</mat-label>
             <input matInput formControlName="cuenta4" autocomplete="off" type="text">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item8">
             <mat-label>Movimiento Excepción 1</mat-label>
             <mat-select matInput formControlName="movExcepcion1">
                 <mat-option>Escoger movimiento excepción...</mat-option>
@@ -52,7 +53,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item9">
             <mat-label>Movimiento Excepción 2</mat-label>
             <mat-select matInput formControlName="movExcepcion2">
                 <mat-option>Escoger movimiento excepción...</mat-option>
@@ -62,7 +63,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item10">
             <mat-label>Movimiento Excepción 3</mat-label>
             <mat-select matInput formControlName="movExcepcion3">
                 <mat-option>Escoger movimiento excepción...</mat-option>
@@ -72,7 +73,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item11">
             <mat-label>Aplica IESS</mat-label>
             <mat-select matInput formControlName="aplicaIess">
                 <mat-option>Escoger...</mat-option>
@@ -82,7 +83,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item12">
             <mat-label>Aplica Impuesto Renta</mat-label>
             <mat-select matInput formControlName="aplicaIR">
                 <mat-option>Escoger...</mat-option>
@@ -92,7 +93,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="grid-item">
+        <mat-form-field appearance="outline" class="grid-item13">
             <mat-label>Empresa Afecta Iess</mat-label>
             <mat-select matInput formControlName="empAfectaIess">
                 <mat-option>Escoger...</mat-option>

@@ -1,9 +1,34 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 5px;
+  .grid-container {
+      display: grid;
+      grid-template-areas: 
+      'a a a a'
+      'b b c c'
+      'd e f g'
+      'h h h h'
+      'i i i i'
+      'j j j j'
+      'k l l m';
+      gap: 5px;
+      padding: 5px;
+    }
+
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 5px 0;
+    font-size: 10px;
   }
-  .grid-item {
-    padding: 20px;
-    text-align: left;
-  }
+
+  .grid-item1 {grid-area: a;}
+  .grid-item2 {grid-area: b;}
+  .grid-item3 {grid-area: c;}
+  .grid-item4 {grid-area: d;}
+  .grid-item5 {grid-area: e;}
+  .grid-item6 {grid-area: f;}
+  .grid-item7 {grid-area: g;}
+  .grid-item8 {grid-area: h;}
+  .grid-item9 {grid-area: i;}
+  .grid-item10 {grid-area: j;}
+  .grid-item11 {grid-area: k;}
+  .grid-item12 {grid-area: l;}
+  .grid-item13 {grid-area: m;}
