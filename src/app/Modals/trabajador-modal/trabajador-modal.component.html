@@ -1,0 +1,238 @@
+<div>
+
+    <form [formGroup]="form" class="grid-container">
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Codigo Compania</mat-label>
+                    <input matInput formControlName="codigoCompania" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Nombres</mat-label>
+                    <input matInput formControlName="nombres" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label></mat-label>
+                    <mat-select matInput formControlName="tipoDeTrabajdor">
+                        <mat-option>Tipo de Trabajador</mat-option>
+                        <mat-option *ngFor="let op of tipoTrabajador" [value]="op.descripcion">
+                            {{op.codigo}} - {{op.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Apellido Paterno</mat-label>
+                    <input matInput formControlName="apellidoPaterno" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Apellido Materno</mat-label>
+                    <input matInput formControlName="apellidoMaterno" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item"> 
+                    <mat-label>Identificacion</mat-label>
+                    <input matInput formControlName="identificacion" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Entidad Bancaria</mat-label>
+                    <input matInput formControlName="entidadBancaria" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Carnet IESS</mat-label>
+                    <input matInput formControlName="carnetIess" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Direccion</mat-label>
+                    <input matInput formControlName="direccion" autocomplete="off" type="text">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Telefono Fijo</mat-label>
+                    <input matInput formControlName="telefonoFijo" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Telefono Movil</mat-label>
+                    <input matInput formControlName="telefonoMovil" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Genero</mat-label>
+                    <mat-select matInput formControlName="genero">
+                        <mat-option>Escoger genero...</mat-option>
+                        <mat-option *ngFor="let op of genero" [value]="op.descripcion">
+                            {{op.codigo}} - {{op.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Numero Cuenta Bancaria</mat-label>
+                    <input matInput formControlName="numeroCuentaBancaria" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Codigo Categoria Ocupacion</mat-label>
+                    <input matInput formControlName="codigoCategoriaOcupacion" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Ocupacion</mat-label>
+                    <input matInput formControlName="ocupacion" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Centro Costos</mat-label>
+                    <input matInput formControlName="centroCostos" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Nivel Salarial</mat-label>
+                    <input matInput formControlName="nivelSalarial" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Estado Trabajador</mat-label>
+                    <mat-select matInput formControlName="estadoTrabajador">
+                        <mat-option>Escoger estado del trabajador...</mat-option>
+                        <mat-option *ngFor="let op of estadoTrabajador" [value]="op.descripcion">
+                            {{op.codigo}} - {{op.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Tipo de Contrato</mat-label>
+                    <mat-select matInput formControlName="tipoDeContrato">
+                        <mat-option>Escoger tipo de contrato</mat-option>
+                        <mat-option *ngFor="let op of tipoContrato" [value]="op.descripcion">
+                            {{op.codigo}} - {{op.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Tipo Cese</mat-label>
+                    <mat-select matInput formControlName="tipoCese">
+                        <mat-option>Escoger tipo de cese</mat-option>
+                        <mat-option *ngFor="let op of tipoCese" [value]="op.descripcion">
+                            {{op.codigo}} - {{op.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Estado Civil</mat-label>
+                    <mat-select matInput formControlName="estadoCivil">
+                        <mat-option>Escoger estado civil...</mat-option>
+                        <mat-option *ngFor="let op of estadoCivil" [value]="op.descripcion">
+                            {{op.codigo}} - {{op.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Tipo de Comision</mat-label>
+                    <input matInput formControlName="tipoDeComision" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Fecha de Nacimiento</mat-label>
+                    <input matInput formControlName="fechaDeNacimiento" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Fecha de Ingreso</mat-label>
+                    <input matInput formControlName="FechaDeIngreso" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Fecha de Cese</mat-label>
+                    <input matInput formControlName="FechaDeCese" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Periodo de Vacaciones</mat-label>
+                    <input matInput formControlName="periodoDeVacaciones" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Fecha de Reingreso</mat-label>
+                    <input matInput formControlName="FechaDeReingreso" autocomplete="off" type="text">
+                </mat-form-field>
+                
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Es Reingreso</mat-label>
+                    <mat-select matInput formControlName="esReingreso">
+                        <mat-option>Escoger si es reingreso...</mat-option>
+                        <mat-option *ngFor="let op of esReingreso" [value]="op.descripcion">
+                            {{op.codigo}} - {{op.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Banco Cuenta Corriente</mat-label>
+                    <input matInput formControlName="bancoCuentaCorriente" autocomplete="off" type="text">
+                </mat-form-field>
+                
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Tipo de Cuenta</mat-label>
+                    <mat-select matInput formControlName="tipoDeCuenta">
+                        <mat-option>Escoger tipo de cuenta</mat-option>
+                        <mat-option *ngFor="let op of tipoCuenta" [value]="op.descripcion">
+                            {{op.codigo}} - {{op.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Forma Calculo 13ro</mat-label>
+                    <input matInput formControlName="fromaCalculo13ro" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Forma Calculo 14to</mat-label>
+                    <input matInput formControlName="fromaCalculo14to" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Bonificacion Complementaria</mat-label>
+                    <input matInput formControlName="bonificacionComplemantaria" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Bonificacion Especial</mat-label>
+                    <input matInput formControlName="bonificacionEspecial" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Remuneracion Minima</mat-label>
+                    <input matInput formControlName="remuneracionMinima" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Cuota Cuenta Corriente</mat-label>
+                    <input matInput formControlName="cuotaCuentaCorriente" autocomplete="off" type="text">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="grid-item">
+                    <mat-label>Fondo Reserva</mat-label>
+                    <input matInput formControlName="fondoReserva" autocomplete="off" type="text">
+                </mat-form-field>
+    </form>
+
+    <div mat-dialog-actions>
+        <button *ngIf="!data.data" mat-raised-button mat-dialog-close color="primary" (click)="createPlanilla()"
+            [disabled]="form.invalid">Crear</button>
+        <button *ngIf="data.data" mat-raised-button mat-dialog-close color="primary" (click)="editPlanilla()"
+            [disabled]="form.invalid">Guardar</button>
+        <button mat-button mat-dialog-close>Close</button>
+    </div>
+</div>

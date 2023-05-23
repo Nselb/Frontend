@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { LoginModalComponent } from './Modals/login-modal/login-modal.component';
 import { MovimientoPlanillaComponent } from './Pages/movimiento-planilla/movimiento-planilla.component';
 import { PlanillaModalComponent } from './Modals/planilla-modal/planilla-modal.component';
+import { TrabajadoresComponent } from './Pages/trabajadores/trabajadores.component';
+import { TrabajadorModalComponent } from './Modals/trabajador-modal/trabajador-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { PlanillaModalComponent } from './Modals/planilla-modal/planilla-modal.c
     NavbarComponent,
     LoginModalComponent,
     MovimientoPlanillaComponent,
-    PlanillaModalComponent
+    PlanillaModalComponent,
+    TrabajadoresComponent,
+    TrabajadorModalComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,8 @@ import { PlanillaModalComponent } from './Modals/planilla-modal/planilla-modal.c
     MatIconModule,
     MatDialogModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ import { MovimientoPlanillaService } from 'src/app/Services/movimiento-planilla.
 import { MovimientosExcepcionService } from 'src/app/Services/movimientos-excepcion.service';
 import { TipoOperacionService } from 'src/app/Services/tipo-operacion.service';
 
+
 @Component({
   selector: 'app-planilla-modal-component',
   templateUrl: './planilla-modal.component.html',
