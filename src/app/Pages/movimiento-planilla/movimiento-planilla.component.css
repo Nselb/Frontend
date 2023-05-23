@@ -5,3 +5,40 @@ table {
     font-size: 14px;
     width: 100%;
 }
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.btn-new{
+    margin-top: 10px;
+}
+
+.mat-elevation-z8{
+    padding: 20px;
+}
+
+.search-bar{
+    display: flex;
+}
+
+.buscar-btn{
+    border-radius: 5px;
+    background-color: #3f51b5;
+    padding: 5px;
+    color: white;
+}
+
+.filed-title{
+    height: 20px;
+    font-size: 15px;
+    border-radius: 0px;
+    background-color: #f8ba7c;
+    padding: 5px;
+    color: white;
+}

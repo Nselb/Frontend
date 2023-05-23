@@ -7,6 +7,35 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.btn-auth{
+    margin-top: 10px;
+}
+
+.auth-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.exit-btn-auth{
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    padding: 5px;
+    margin-left: 10px;
+    
+}
+
+.auth-column{
+    width: 235px;
+}
+
+.material-symbols-outlined {
+    display: flex;
+    font-size: 3.73em;
+    justify-content: center;
+}
+
 h1,
 h2,
 h3,

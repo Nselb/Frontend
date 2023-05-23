@@ -1,0 +1,17 @@
+.head-left{
+    display: flex;
+    flex-wrap: nowrap;
+    position: absolute;
+    right: 0;
+    margin: 1%;
+}
+
+.btn{
+    position: absolute;
+    right: 0;
+}
+
+.emisor{
+    display: flex;
+    padding: 0 50px;
+}

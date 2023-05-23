@@ -1,24 +1,37 @@
 <div>
-    <form [formGroup]="form">
-        <mat-form-field appearance="outline">
-            <mat-label>Código</mat-label>
-            <input matInput formControlName="codigo" autocomplete="off" type="text"
-                oninput="{this.value=this.value.replace(/[^0-9]/g,'');}">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Contraseña</mat-label>
-            <input matInput formControlName="contrasena" autocomplete="off" type="password">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Emisor</mat-label>
-            <mat-select formControlName="codigoEmisor" required>
-                <mat-option>Escoger emisor...</mat-option>
-                <mat-option *ngFor="let emisor of listaEmisores" [value]="emisor.codigo">
-                    {{emisor.codigo}} - {{emisor.nombreEmisor}}
-                </mat-option>
-            </mat-select>
-            <mat-error *ngIf="form.hasError('required')">Escoger emisor</mat-error>
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="login()" [disabled]="form.invalid">Login</button>
-    </form>
+    <div class="form-wraper">
+        <div class="form-container card">
+            <div class="form-header">
+                <img src="https://media.primicias.ec/2019/08/30142357/UDLA_logo.png" class="udla-logo" alt="">
+            </div>
+            <form [formGroup]="form" class="form-body">
+
+                <mat-form-field appearance="outline" class="justifier">
+                    <mat-label>Código</mat-label>
+                    <input matInput formControlName="codigo" autocomplete="off" type="text" class="form-input" 
+                        oninput="{this.value=this.value.replace(/[^0-9]/g,'');}">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="justifier">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput formControlName="contrasena" autocomplete="off" type="password" class="form-input">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="justifier">
+                    <mat-label>Emisor</mat-label>
+                    <mat-select formControlName="codigoEmisor" required>
+                        <mat-option>Escoger emisor...</mat-option>
+                        <mat-option *ngFor="let emisor of listaEmisores" [value]="emisor.codigo">
+                            {{emisor.codigo}} - {{emisor.nombreEmisor}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.hasError('required')">Escoger emisor</mat-error>
+                </mat-form-field>
+
+                <div class="form-footer">
+                    <button mat-raised-button color="primary" (click)="login()" [disabled]="form.invalid" class="btn custom-btn">Login</button>   
+                </div>
+            </form>
+        </div>
+    </div>    
 </div>

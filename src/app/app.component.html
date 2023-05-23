@@ -1,14 +1,19 @@
 <app-navbar />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <mat-sidenav-container class="example-container">
-    <mat-sidenav *ngIf="isLogged && autorizador" mode="side" opened>
-        <button mat-button color="primary" (click)="navigate('/centros')">Centro Costos</button>
-        <button mat-button color="primary" (click)="navigate('/movimientos')">Movimientos Planilla</button>
-        <button mat-button color="primary" (click)="navigate('/trabajadores')">Trabajadores</button>
-        <button mat-raised-button color="warn" (click)="autorizadorLogout()">Cerrar Sesión Como Autorizador</button>
+    <mat-sidenav *ngIf="isLogged && autorizador" mode="side" opened class="auth-column">
+        <div class="auth-container">
+            <span class="material-symbols-outlined">point_of_sale</span>
+            <button mat-button color="primary" (click)="navigate('/centros')">Centro Costos</button>
+            <span class="material-symbols-outlined">trending_up</span>
+            <button mat-button color="primary" (click)="navigate('/movimientos')">Movimientos Planilla</button>
+            <span class="material-symbols-outlined">engineering</span>
+            <button mat-button color="primary" (click)="navigate('/trabajadores')">Trabajadores</button>
+            <button mat-raised-button color="warn" (click)="autorizadorLogout()" class="exit-btn-auth">Cerrar Sesión Como Autorizador</button>
+        </div>
     </mat-sidenav>
     <mat-sidenav *ngIf="isLogged && !autorizador" mode="side" opened>
-        <button mat-raised-button color="primary" (click)="autorizadorLoginDialog()">Iniciar Sesion Como
-            Autorizador</button>
+        <button mat-raised-button color="primary" (click)="autorizadorLoginDialog()" class="btn-auth">Iniciar Sesion Como Autorizador</button>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet />
