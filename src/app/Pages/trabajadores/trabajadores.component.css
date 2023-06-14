@@ -1,6 +1,7 @@
 table {
     width: 100%;
 }
+
 .mat-form-field {
     font-size: 14px;
     width: 100%;
@@ -15,7 +16,7 @@ table {
     width: 100%;
 }
 
-.search{
+.search {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -28,25 +29,25 @@ table {
 
 .flex-item-left {
     flex: 80%;
-  }
-  
-  .flex-item-right {
+}
+
+.flex-item-right {
     border-radius: 5px;
     background-color: #3f51b5;
     color: white;
     flex: 20%;
-  }
+}
 
-.search-bar{
+.search-bar {
     display: flex;
 }
 
-.mat-elevation-z8{
+.mat-elevation-z8 {
     padding: 20px;
 }
 
 
-.filed-title{
+.filed-title {
     height: 20px;
     font-size: 15px;
     border-radius: 0px;
