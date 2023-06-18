@@ -1,15 +1,16 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { DialogService } from './Services/dialog.service';
-import { LoginModalComponent } from './Modals/login-modal/login-modal.component';
-import { Router } from '@angular/router';
-import { AutorizadorService } from './Services/autorizador.service';
 import { DialogComponent } from './Modals/dialog/dialog.component';
+import { AutorizadorService } from './Services/autorizador.service';
+import { LoginModalComponent } from './Modals/login-modal/login-modal.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   isLogged = false;
   autorizador = false;
@@ -42,5 +43,4 @@ export class AppComponent {
   navigate(uri: string) {
     this._router.navigateByUrl(uri);
   }
-
 }
