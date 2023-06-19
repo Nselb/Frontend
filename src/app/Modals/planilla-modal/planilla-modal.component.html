@@ -17,7 +17,7 @@
             <mat-label>Tipo Operación</mat-label>
             <mat-select matInput formControlName="tipoOperacion">
                 <mat-option>Escoger tipo de operación...</mat-option>
-                <mat-option *ngFor="let op of tipoOperacion" [value]="op.codigoTipooperacion">
+                <mat-option *ngFor="let op of tipoOperacion" [value]="op.nombreOperacion">
                     {{op.nombreOperacion}} - {{op.codigoTipooperacion}}
                 </mat-option>
             </mat-select>
