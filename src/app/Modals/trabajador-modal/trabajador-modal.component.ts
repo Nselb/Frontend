@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CentroCostos } from 'src/app/Interfaces/centro-costos';
 import { Info } from 'src/app/Interfaces/info';
 import { Trabajador } from 'src/app/Interfaces/trabajador';
+import { CentroCostosService } from 'src/app/Services/centro-costos.service';
 import { TrabajadorService } from 'src/app/Services/trabajador.service';
 import { VariosService } from 'src/app/Services/varios.service';
 
@@ -16,6 +18,7 @@ export class TrabajadorModalComponent implements OnInit {
   form: FormGroup;
   tipoTrabajador: Info[] = [];
   genero: Info[] = [];
+  centroCostos: CentroCostos[] = [];
   estadoTrabajador: Info[] = [];
   tipoContrato: Info[] = [];
   tipoCese: Info[] = [];
@@ -26,6 +29,7 @@ export class TrabajadorModalComponent implements OnInit {
     private fb: FormBuilder,
     private _variosService: VariosService,
     private _trabajadorService: TrabajadorService,
+    private _ccService: CentroCostosService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.fb.group({
@@ -52,9 +56,9 @@ export class TrabajadorModalComponent implements OnInit {
       tipoDeComision: ['', Validators.required],
       fechaDeNacimiento: ['', Validators.required],
       FechaDeIngreso: ['', Validators.required],
-      FechaDeCese: ['', Validators.required],
+      FechaDeCese: [''],
       periodoDeVacaciones: ['', Validators.required],
-      FechaDeReingreso: ['', Validators.required],
+      FechaDeReingreso: [''],
       esReingreso: ['', Validators.required],
       bancoCuentaCorriente: ['', Validators.required],
       tipoDeCuenta: ['', Validators.required],
@@ -87,6 +91,12 @@ export class TrabajadorModalComponent implements OnInit {
         this.genero = data;
       }
     })
+    this._ccService.getAll().subscribe({
+      next: data=> {
+        this.centroCostos = data;
+      }
+    })
+  
     this._variosService.getTipoCese().subscribe({
       next: data => {
         this.tipoCese = data;
@@ -110,8 +120,9 @@ export class TrabajadorModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form.get('tipoCese')?.patchValue('N');
+    console.log();
     if (this.data.data) {
-      console.log(this.data.data);
       this.form.patchValue({
         apellidoMaterno: this.data.data.apellidoMaterno,
         apellidoPaterno: this.data.data.apellidoPaterno,
