@@ -1,0 +1,66 @@
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'a b c'
+        'd e f'
+        'g h i'
+        'j k l'
+        'm n o'
+        'p q r'
+        's t u'
+        'v w z'
+        'aa ab ac'
+        'ad ae af'
+        'ag ah ai'
+        'aj aq ak'
+        'al al al'
+        ;
+        
+    gap: 5px;
+    padding: 5px;
+}
+
+.grid-container>div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 5px 0;
+    font-size: 10px;
+}
+
+.grid-item1 {grid-area: a;}
+.grid-item2 {grid-area: b;}
+.grid-item3 {grid-area: c;}
+.grid-item4 {grid-area: d;}
+.grid-item5 {grid-area: e;}
+.grid-item6 {grid-area: f;}
+.grid-item7 {grid-area: g;}
+.grid-item8 {grid-area: h;}
+.grid-item9 {grid-area: i;}
+.grid-item10 {grid-area: j;}
+.grid-item11 {grid-area: k;}
+.grid-item12 {grid-area: l;}
+.grid-item13 {grid-area: m;}
+.grid-item14 {grid-area: n;}
+.grid-item15 {grid-area: o;}
+.grid-item16 {grid-area: p;}
+.grid-item17 {grid-area: q;}
+.grid-item18 {grid-area: r;}
+.grid-item19 {grid-area: s;}
+.grid-item20 {grid-area: t;}
+.grid-item21 {grid-area: u;}
+.grid-item22 {grid-area: v;}
+.grid-item23 {grid-area: w;}
+.grid-item24 {grid-area: z;}
+.grid-item25 {grid-area: aa;}
+.grid-item26 {grid-area: ab;}
+.grid-item27 {grid-area: ac;}
+.grid-item28 {grid-area: ad;}
+.grid-item29 {grid-area: ae;}
+.grid-item30 {grid-area: af;}
+.grid-item31 {grid-area: ag;}
+.grid-item32 {grid-area: ah;}
+.grid-item33 {grid-area: ai;}
+.grid-item34 {grid-area: aj;}
+.grid-item35 {grid-area: aq;}
+.grid-item36 {grid-area: ak;}
+.grid-item37 {grid-area: al;}
