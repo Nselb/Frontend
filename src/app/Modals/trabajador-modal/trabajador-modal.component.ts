@@ -42,13 +42,13 @@ export class TrabajadorModalComponent implements OnInit {
       entidadBancaria: ['', Validators.required],
       carnetIess: ['', Validators.required],
       direccion: ['', Validators.required],
-      telefonoFijo: ['', Validators.required],
-      telefonoMovil: ['', Validators.required],
+      telefonoFijo: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]],
+      telefonoMovil: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       genero: ['', Validators.required],
       numeroCuentaBancaria: ['', Validators.required],
       ocupacion: ['', Validators.required],
       centroCostos: ['', Validators.required],
-      nivelSalarial: ['', Validators.required],
+      nivelSalarial: ['', [Validators.pattern('^[123]$'), Validators.required]],
       estadoTrabajador: ['', Validators.required],
       tipoDeContrato: ['', Validators.required],
       tipoCese: ['', Validators.required],
@@ -60,14 +60,12 @@ export class TrabajadorModalComponent implements OnInit {
       periodoDeVacaciones: ['', Validators.required],
       FechaDeReingreso: [''],
       esReingreso: ['', Validators.required],
-      bancoCuentaCorriente: ['', Validators.required],
       tipoDeCuenta: ['', Validators.required],
       fromaCalculo13ro: ['', Validators.required],
       fromaCalculo14to: ['', Validators.required],
       bonificacionComplemantaria: ['', Validators.required],
       bonificacionEspecial: ['', Validators.required],
       remuneracionMinima: ['', Validators.required],
-      cuotaCuentaCorriente: ['', Validators.required],
       fondoReserva: ['', Validators.required],
       codigoCategoriaOcupacion: ['', Validators.required]
     })
@@ -92,11 +90,10 @@ export class TrabajadorModalComponent implements OnInit {
       }
     })
     this._ccService.getAll().subscribe({
-      next: data=> {
+      next: data => {
         this.centroCostos = data;
       }
     })
-  
     this._variosService.getTipoCese().subscribe({
       next: data => {
         this.tipoCese = data;
@@ -121,47 +118,46 @@ export class TrabajadorModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.get('tipoCese')?.patchValue('N');
-    console.log();
+    console.log(this.data.data);
+
     if (this.data.data) {
       this.form.patchValue({
-        apellidoMaterno: this.data.data.apellidoMaterno,
-        apellidoPaterno: this.data.data.apellidoPaterno,
-        bancoCuentaCorriente: this.data.data.bancoCuentaCorriente,
-        bonificacionComplementaria: this.data.data.bonificacionComplementaria,
-        bonificacionEspecial: this.data.data.bonificacionEspecial,
-        carnetIess: this.data.data.carnetIess,
-        centroCostos: this.data.data.centroCostos,
-        codigoCategoriaOcupacion: this.data.data.codigoCategoriaOcupacion,
-        codigoCompania: this.data.data.codigoCompania,
-        cuotaCuentaCorriente: this.data.data.cuotaCuentaCOrriente,
+        apellidoMaterno: this.data.data.apellido_Materno,
+        apellidoPaterno: this.data.data.apellido_Paterno,
+        numeroCuentaBancaria: this.data.data.nro_Cuenta_Bancaria,
+        bonificacionComplemantaria: this.data.data.boniComplementaria,
+        bonificacionEspecial: this.data.data.boniEspecial,
+        carnetIess: this.data.data.carnetIESS,
+        centroCostos: this.data.data.centro_Costos,
+        codigoCategoriaOcupacion: this.data.data.codigo_Categoria_Ocupacion,
+        codigoCompania: this.data.data.comP_Codigo,
         direccion: this.data.data.direccion,
-        entidadBancaria: this.data.data.entidadBancaria,
+        entidadBancaria: this.data.data.entidad_Bancaria,
         esReingreso: this.data.data.esReingreso,
         estadoCivil: this.data.data.estadoCivil,
         estadoTrabajador: this.data.data.estadoTrabajador,
-        FechaDeCese: this.data.data.FechaDeCese,
+        FechaDeCese: this.data.data.fechaCese,
         FechaDeIngreso: this.data.data.fechaIngreso,
-        FechaDeNacimiento: this.data.data.fechaDeNacimiento,
-        FechaDeReingreso: this.data.data.FechaDeReingreso,
-        fondoReserva: this.data.data.fondoReserva,
-        formaCalculo13ro: this.data.data.formaCalculo13ro,
-        formaCalculo14to: this.data.data.fromaCalculo14to,
+        fechaDeNacimiento: this.data.data.fechaNacimiento,
+        FechaDeReingreso: this.data.data.fechaReingreso,
+        fondoReserva: this.data.data.fondo_Reserva,
+        fromaCalculo13ro: this.data.data.formaCalculo13ro,
+        fromaCalculo14to: this.data.data.formaCalculo14ro,
         genero: this.data.data.genero,
         identificacion: this.data.data.identificacion,
         mensaje: this.data.data.mensaje,
-        nivelSalarial: this.data.data.nivelSalarial,
+        nivelSalarial: this.data.data.nivel_Salarial,
         nombres: this.data.data.nombres,
-        numeroCuentaBancaria: this.data.data.numeroCuentaBancaria,
         ocupacion: this.data.data.ocupacion,
-        periododeVacaciones: this.data.data.periodoDeVacaciones,
-        remuneracionMinima: this.data.data.remuneracionMinima,
-        telefonoFijo: this.data.data.telefonoFijo,
-        telefonoMovil: this.data.data.telefonoMovil,
-        tipoCese: this.data.data.tipoCese,
-        tipoContrato: this.data.data.tipoContrato,
-        tipoCuenta: this.data.data.tipoCuenta,
-        tipotrabajador: this.data.data.tipoTrabajador,
-        tipodeComision: this.data.data.tipodeComision
+        periodoDeVacaciones: this.data.data.periododeVacaciones,
+        remuneracionMinima: this.data.data.remuneracion_Minima,
+        telefonoFijo: this.data.data.telefono_Fijo,
+        telefonoMovil: this.data.data.telefono_Movil,
+        tipoCese: this.data.data.tipo_Cese,
+        tipoDeContrato: this.data.data.tipo_Contrato,
+        tipoDeCuenta: this.data.data.tipo_Cuenta,
+        tipoDeTrabajdor: this.data.data.tipo_trabajador,
+        tipoDeComision: this.data.data.tipodeComision
       }
       )
     }
@@ -170,47 +166,42 @@ export class TrabajadorModalComponent implements OnInit {
     const trabajador: Trabajador = {
       apellido_Materno: this.form.value.apellidoMaterno,
       apellido_Paterno: this.form.value.apellidoPaterno,
-      año_Ult_Rsva_Indemni: 0,
-      bancoCTA_CTE: this.form.value.bancoCuentaCorriente,
-      boniComplementaria: this.form.value.bonificacionComplementaria,
+      boniComplementaria: this.form.value.bonificacionComplemantaria,
       boniEspecial: this.form.value.bonificacionEspecial,
       carnetIESS: this.form.value.carnetIess,
-      centro_Costos: this.form.value.centroCostos,
+      centro_Costos: '' + this.form.value.centroCostos,
       codigo_Categoria_Ocupacion: this.form.value.codigoCategoriaOcupacion,
       comP_Codigo: this.form.value.codigoCompania,
-      cuotaCuentaCorriente: this.form.value.cuotaCuentaCOrriente,
       direccion: this.form.value.direccion,
       entidad_Bancaria: this.form.value.entidadBancaria,
       esReingreso: this.form.value.esReingreso,
       estadoCivil: this.form.value.estadoCivil,
       estadoTrabajador: this.form.value.estadoTrabajador,
-      fecha_Ult_Actualizacion: new Date(),
+      fecha_Ult_Actualizacion: '',
       fechaCese: this.form.value.FechaDeCese,
-      fechaIngreso: new Date(),
+      fechaIngreso: this.form.value.FechaDeIngreso,
       fechaNacimiento: this.form.value.fechaDeNacimiento,
       fechaReingreso: this.form.value.FechaDeReingreso,
       fondo_Reserva: this.form.value.fondoReserva,
-      formaCalculo13ro: this.form.value.formaCalculo13ro,
+      formaCalculo13ro: this.form.value.fromaCalculo13ro,
       formaCalculo14ro: this.form.value.fromaCalculo14to,
       genero: this.form.value.genero,
       id_Trabajador: 0,
       identificacion: this.form.value.identificacion,
       mensaje: '',
-      mes_Ult_Rsva_Indemni: 0,
       nivel_Salarial: this.form.value.nivelSalarial,
       nombres: this.form.value.nombres,
       nro_Cuenta_Bancaria: this.form.value.numeroCuentaBancaria,
       ocupacion: this.form.value.ocupacion,
       periododeVacaciones: this.form.value.periodoDeVacaciones,
       remuneracion_Minima: this.form.value.remuneracionMinima,
-      rsV_Indem_Acumul: 0,
       telefono_Fijo: this.form.value.telefonoFijo,
       telefono_Movil: this.form.value.telefonoMovil,
       tipo_Cese: this.form.value.tipoCese,
-      tipo_Contrato: this.form.value.tipoContrato,
-      tipo_Cuenta: this.form.value.tipoCuenta,
-      tipo_trabajador: this.form.value.tipoTrabajador,
-      tipodeComision: this.form.value.tipodeComision
+      tipo_Contrato: this.form.value.tipoDeContrato,
+      tipo_Cuenta: this.form.value.tipoDeCuenta,
+      tipo_trabajador: this.form.value.tipoDeTrabajdor,
+      tipodeComision: this.form.value.tipoDeComision
     }
     this._trabajadorService.insert(trabajador).subscribe({
       next: () => { },
@@ -221,51 +212,47 @@ export class TrabajadorModalComponent implements OnInit {
     const trabajador: Trabajador = {
       apellido_Materno: this.form.value.apellidoMaterno,
       apellido_Paterno: this.form.value.apellidoPaterno,
-      año_Ult_Rsva_Indemni: 0,
-      bancoCTA_CTE: this.form.value.bancoCuentaCorriente,
-      boniComplementaria: this.form.value.bonificacionComplementaria,
+      boniComplementaria: this.form.value.bonificacionComplemantaria,
       boniEspecial: this.form.value.bonificacionEspecial,
       carnetIESS: this.form.value.carnetIess,
-      centro_Costos: this.form.value.centroCostos,
+      centro_Costos: '' + this.form.value.centroCostos,
       codigo_Categoria_Ocupacion: this.form.value.codigoCategoriaOcupacion,
       comP_Codigo: this.form.value.codigoCompania,
-      cuotaCuentaCorriente: this.form.value.cuotaCuentaCOrriente,
       direccion: this.form.value.direccion,
       entidad_Bancaria: this.form.value.entidadBancaria,
       esReingreso: this.form.value.esReingreso,
       estadoCivil: this.form.value.estadoCivil,
       estadoTrabajador: this.form.value.estadoTrabajador,
-      fecha_Ult_Actualizacion: new Date(),
+      fecha_Ult_Actualizacion: '',
       fechaCese: this.form.value.FechaDeCese,
-      fechaIngreso: new Date(),
+      fechaIngreso: this.form.value.FechaDeIngreso,
       fechaNacimiento: this.form.value.fechaDeNacimiento,
       fechaReingreso: this.form.value.FechaDeReingreso,
       fondo_Reserva: this.form.value.fondoReserva,
-      formaCalculo13ro: this.form.value.formaCalculo13ro,
+      formaCalculo13ro: this.form.value.fromaCalculo13ro,
       formaCalculo14ro: this.form.value.fromaCalculo14to,
       genero: this.form.value.genero,
-      id_Trabajador: 0,
+      id_Trabajador: this.data.data.id_Trabajador,
       identificacion: this.form.value.identificacion,
       mensaje: '',
-      mes_Ult_Rsva_Indemni: 0,
       nivel_Salarial: this.form.value.nivelSalarial,
       nombres: this.form.value.nombres,
       nro_Cuenta_Bancaria: this.form.value.numeroCuentaBancaria,
       ocupacion: this.form.value.ocupacion,
       periododeVacaciones: this.form.value.periodoDeVacaciones,
       remuneracion_Minima: this.form.value.remuneracionMinima,
-      rsV_Indem_Acumul: 0,
       telefono_Fijo: this.form.value.telefonoFijo,
       telefono_Movil: this.form.value.telefonoMovil,
       tipo_Cese: this.form.value.tipoCese,
-      tipo_Contrato: this.form.value.tipoContrato,
-      tipo_Cuenta: this.form.value.tipoCuenta,
-      tipo_trabajador: this.form.value.tipoTrabajador,
-      tipodeComision: this.form.value.tipodeComision
+      tipo_Contrato: this.form.value.tipoDeContrato,
+      tipo_Cuenta: this.form.value.tipoDeCuenta,
+      tipo_trabajador: this.form.value.tipoDeTrabajdor,
+      tipodeComision: this.form.value.tipoDeComision
     }
+    console.log(trabajador)
     this._trabajadorService.update(trabajador).subscribe({
-      next: () => { },
-      error: () => { }
+      next: (a) => { console.log(a) },
+      error: (e) => { }
     })
   }
 }

@@ -12,8 +12,7 @@
         'aa ab ac'
         'ad ae af'
         'ag ah ai'
-        'aj aq ak'
-        'al al al'
+        'aj aq al'
         ;
         
     gap: 5px;
@@ -62,5 +61,4 @@
 .grid-item33 {grid-area: ai;}
 .grid-item34 {grid-area: aj;}
 .grid-item35 {grid-area: aq;}
-.grid-item36 {grid-area: ak;}
 .grid-item37 {grid-area: al;}

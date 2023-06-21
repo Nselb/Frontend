@@ -55,12 +55,14 @@
 
             <mat-form-field appearance="outline" class="grid-item10">
                 <mat-label>Telefono Fijo</mat-label>
-                <input matInput formControlName="telefonoFijo" autocomplete="off" type="text">
+                <input matInput formControlName="telefonoFijo" autocomplete="off" type="text" maxlength="9"
+                    oninput="{this.value=this.value.replace(/[^0-9]/g,'');}">
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="grid-item11">
                 <mat-label>Telefono Movil</mat-label>
-                <input matInput formControlName="telefonoMovil" autocomplete="off" type="text">
+                <input matInput formControlName="telefonoMovil" autocomplete="off" type="text" maxlength="10"
+                oninput="{this.value=this.value.replace(/[^0-9]/g,'');}">
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="grid-item12">
@@ -118,7 +120,7 @@
                 <mat-select matInput formControlName="tipoDeContrato">
                     <mat-option>Escoger tipo de contrato</mat-option>
                     <mat-option *ngFor="let op of tipoContrato" [value]="op.descripcion">
-                        {{op.codigo}} - {{op.descripcion}}
+                        {{op.descripcion}} - {{op.codigo}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -158,7 +160,7 @@
                 <input matInput formControlName="FechaDeIngreso" autocomplete="off" type="datetime-local">
             </mat-form-field>
 
-            <div *ngIf="form.get('tipoCese')?.value !== 'N' || !form.get('tipoCese')?.value" class="grid-item25">
+            <div *ngIf="form.get('tipoCese')?.value !== 'N'" class="grid-item25">
                 <mat-form-field appearance="outline">
                     <mat-label>Fecha de Cese</mat-label>
                     <input matInput formControlName="FechaDeCese" autocomplete="off" type="datetime-local">
@@ -185,11 +187,6 @@
                     <input matInput formControlName="FechaDeReingreso" autocomplete="off" type="datetime-local">
                 </mat-form-field>
             </div>
-
-            <mat-form-field appearance="outline" class="grid-item29">
-                <mat-label>Banco Cuenta Corriente</mat-label>
-                <input matInput formControlName="bancoCuentaCorriente" autocomplete="off" type="text">
-            </mat-form-field>
 
             <mat-form-field appearance="outline" class="grid-item30">
                 <mat-label>Tipo de Cuenta</mat-label>
@@ -226,16 +223,11 @@
                 <input matInput formControlName="remuneracionMinima" autocomplete="off" type="text">
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="grid-item36">
-                <mat-label>Cuota Cuenta Corriente</mat-label>
-                <input matInput formControlName="cuotaCuentaCorriente" autocomplete="off" type="text">
-            </mat-form-field>
-
             <mat-form-field appearance="outline" class="grid-item37">
                 <mat-label>Fondo Reserva</mat-label>
                 <input matInput formControlName="fondoReserva" autocomplete="off" type="text">
             </mat-form-field>
-            
+
         </form>
 
         <div mat-dialog-actions>

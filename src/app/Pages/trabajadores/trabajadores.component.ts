@@ -16,61 +16,60 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class TrabajadoresComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['Identificacion', 'Nombres', 'Apellido Paterno', 'Apellido Materno', 'Telefono Movil','Acciones'];
+  displayedColumns: string[] = ['Identificacion', 'Nombres', 'Apellido Paterno', 'Apellido Materno', 'Telefono Movil', 'Acciones'];
   dataSource = new MatTableDataSource<Trabajador>();
 
-
-  constructor(private _router: Router, private appComponent: AppComponent, private _mpService: TrabajadorService, private _dialogService: DialogService) {
+  constructor(private _router: Router,
+    private appComponent: AppComponent,
+    private _mpService: TrabajadorService,
+    private _dialogService: DialogService) {
     localStorage.getItem('isLogged') !== 'true' || localStorage.getItem('isLoggedAutorizador') !== 'true' ? this._router.navigateByUrl('/login') : () => { };
     this.appComponent.isLogged = localStorage.getItem('isLogged') === 'true'
     localStorage.getItem('isLoggedAutorizador') ? this.appComponent.autorizador = true : this.appComponent.autorizador = false;
   }
 
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
-
   }
 
   ngOnInit(): void {
-    this.getMovimientos(1);
+    this.getMovimientos(JSON.parse(localStorage.getItem('user') || "").compania);
     this.appComponent.isLogged = localStorage.getItem('isLogged') === 'true'
   }
-  getMovimientos(sucursal:number) {
+  getMovimientos(sucursal: number) {
     this._mpService.get(sucursal).subscribe({
       next: (data) => {
         this.dataSource.data = data
       },
       error: () => { }
     })
-  } 
+  }
 
   createMovimiento() {
     this._dialogService.openDialog(TrabajadorModalComponent).afterClosed().subscribe({
-      next: () => {
-        this.getMovimientos(1);
+      next: (a) => {
+        this.getMovimientos(a.cOMP_Codigo);
       }
     });
   }
 
-  editPlanilla(planilla: Trabajador) {
-    this._dialogService.openDialog(TrabajadorModalComponent, undefined, undefined, planilla).afterClosed().subscribe({
-      next: () => {
-        this.getMovimientos(1);
+  editPlanilla(trabajador: Trabajador) {
+    this._dialogService.openDialog(TrabajadorModalComponent, undefined, undefined, trabajador).afterClosed().subscribe({
+      next: (a) => {
+        this.getMovimientos(a.cOMP_Codigo);
       }
     });
   }
 
 
-  deleteMovimiento(movimiento: Trabajador) {
+  deleteTrabajador(trabajador: Trabajador) {
     this._dialogService.openDialog(DialogComponent, { title: 'Confirmar', msg: 'Está seguro que desea borrar la entrada?' }, [
       {
         text: 'Si', action: () => {
-          this._mpService.delete(movimiento.comP_Codigo, movimiento.id_Trabajador).subscribe({
+          this._mpService.delete(trabajador.comP_Codigo, trabajador.id_Trabajador).subscribe({
             next: () => {
-              console.log(movimiento);
-              this.getMovimientos(movimiento.comP_Codigo);
+              this.getMovimientos(trabajador.comP_Codigo);
             }
           })
         }
