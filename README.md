@@ -52,11 +52,13 @@ Tabla de contenidos
 ](https://visualstudio.microsoft.com/es/)
 
 ![a](./rm/VS1.jpg)
+
 ### Comenzar el proceso de instalación
-![a](./rm/VS2.jpg)
-![a](./rm/VS3.jpg)
-![a](./rm/VS4.jpg)
-![a](./rm/VS5.jpg)
+
+![a](./rm/vs2.jpg)
+![a](./rm/vs3.jpg)
+![a](./rm/vs4.jpg)
+![a](./rm/vs5.jpg)
 
 ## Descargar el Frontend y Backend
 ### Backend
