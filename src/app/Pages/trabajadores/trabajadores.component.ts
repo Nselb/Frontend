@@ -8,6 +8,8 @@ import { TrabajadorModalComponent } from 'src/app/Modals/trabajador-modal/trabaj
 import { DialogService } from 'src/app/Services/dialog.service';
 import { TrabajadorService } from 'src/app/Services/trabajador.service';
 import { AppComponent } from 'src/app/app.component';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-trabajadores',
@@ -85,6 +87,16 @@ export class TrabajadoresComponent implements AfterViewInit, OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  exportToExcel(): void {
+    const element = document.getElementById('trabajadores'); 
+    const worksheet = XLSX.utils.table_to_sheet(element);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Hoja 1');
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const data = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
+    saveAs(data, 'trabajadores.xlsx');
   }
 }
 

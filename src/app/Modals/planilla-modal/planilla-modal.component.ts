@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Afecta } from 'src/app/Interfaces/afecta';
@@ -28,8 +28,10 @@ export class PlanillaModalComponent implements OnInit {
     private fb: FormBuilder,
     private _planillaService: MovimientoPlanillaService,
     private _variosService: VariosService,
+    private cdr: ChangeDetectorRef,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+
     this.form = this.fb.group({
       concepto: ['', Validators.required],
       prioridad: ['', Validators.required],
@@ -45,6 +47,14 @@ export class PlanillaModalComponent implements OnInit {
       tipoOperacion: ['', Validators.required],
       empAfectaIess: ['', Validators.required]
     })
+    this.populateSelect();
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  populateSelect() {
     this._variosService.getTipoOperacion().subscribe(
       {
         next: (data) => {
@@ -87,6 +97,7 @@ export class PlanillaModalComponent implements OnInit {
         }
       }
     )
+    this.populateForm();
   }
 
   createPlanilla() {
@@ -144,7 +155,7 @@ export class PlanillaModalComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  populateForm(): void {
     if (this.data.data) {
       console.log(this.data.data);
       this.form.patchValue({
@@ -163,6 +174,7 @@ export class PlanillaModalComponent implements OnInit {
         empAfectaIess: this.data.data.empresa_Afecta_Iess,
       }
       )
+      this.cdr.detectChanges();
     }
   }
 }
