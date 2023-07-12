@@ -1,17 +1,4 @@
 <div class="mat-elevation-z8">
-
-    <div class="search">
-        <mat-form-field appearance="standard" class="flex-item-left">
-            <div class="search-bar">
-                <span class="material-symbols-outlined">search</span>
-                <input matInput #sucursal type="text" oninput="{this.value=this.value.replace(/[^0-9]/g,'');}">
-            </div>
-            <mat-hint>Sucursal</mat-hint>
-        </mat-form-field>
-        <div class="btn-search"><button mat-raised-button color="primary" (click)="getMovimientos(+sucursal.value)"
-                class="flex-item-right">Buscar Sucursal</button></div>
-    </div>
-
     <div>
         <button mat-raised-button color="primary" (click)="createMovimiento()" class="btn-new">Nuevo Trabajador</button>
         <button (click)="exportToExcel()">Descargar Excel</button>
@@ -49,7 +36,7 @@
                 <button mat-icon-button color="primary" (click)="editPlanilla(movimiento)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" (click)="deleteMovimiento(movimiento)">
+                <button mat-icon-button color="warn" (click)="deleteTrabajador(movimiento)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

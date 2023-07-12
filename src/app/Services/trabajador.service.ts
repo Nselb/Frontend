@@ -26,7 +26,6 @@ export class TrabajadorService {
   }
 
   delete(sucursal: number, codigo: number): Observable<Trabajador> {
-    console.log(sucursal, codigo);
     return this.client.delete<Trabajador>(`${this.apiUrl}/Delete/${sucursal}/${codigo}`)
   }
 }

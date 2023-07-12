@@ -131,22 +131,21 @@ export class PlanillaModalComponent implements OnInit {
         codigo = data[0].codigoConcepto;
         const planilla: MovimientoPlanilla = {
           codigoConcepto: codigo,
-          aplica_iess: this._variosService.getAfectaById(this.form.value.aplicaIess),
-          aplica_imp_renta: this._variosService.getAfectaById(this.form.value.aplicaIR),
+          aplica_iess: this.form.value.aplicaIess,
+          aplica_imp_renta: this.form.value.aplicaIR,
           concepto: this.form.value.concepto,
           cuenta1: this.form.value.cuenta1,
           cuenta2: this.form.value.cuenta2,
           cuenta3: this.form.value.cuenta3,
           cuenta4: this.form.value.cuenta4,
-          empresa_Afecta_Iess: this._variosService.getAfectaById(this.form.value.empAfectaIess),
+          empresa_Afecta_Iess: this.form.value.empAfectaIess,
           mensaje: '',
-          movimientoExcepcion1: this._variosService.getMov1y2ById(this.form.value.movExcepcion1),
-          movimientoExcepcion2: this._variosService.getMov1y2ById(this.form.value.movExcepcion2),
-          movimientoExcepcion3: this._variosService.getMov3ById(this.form.value.movExcepcion3),
+          movimientoExcepcion1: this.form.value.movExcepcion1,
+          movimientoExcepcion2: this.form.value.movExcepcion2,
+          movimientoExcepcion3: this.form.value.movExcepcion3,
           prioridad: this.form.value.prioridad,
-          tipoOperacion: this._variosService.getOperacionById(this.form.value.tipoOperacion)
+          tipoOperacion: this.form.value.tipoOperacion
         }
-        console.log(planilla);
         this._planillaService.update(planilla).subscribe({
           next: () => { },
           error: () => { }
@@ -165,13 +164,13 @@ export class PlanillaModalComponent implements OnInit {
         cuenta2: this.data.data.cuenta2,
         cuenta3: this.data.data.cuenta3,
         cuenta4: this.data.data.cuenta4,
-        movExcepcion1: this.data.data.movimientoExcepcion1,
-        movExcepcion2: this.data.data.movimientoExcepcion2,
-        movExcepcion3: this.data.data.movimientoExcepcion3,
-        aplicaIess: this.data.data.aplica_iess,
-        aplicaIR: this.data.data.aplica_imp_renta,
-        tipoOperacion: this.data.data.tipoOperacion,
-        empAfectaIess: this.data.data.empresa_Afecta_Iess,
+        movExcepcion1: this._variosService.getMov1y2ById(this.data.data.movimientoExcepcion1),
+        movExcepcion2: this._variosService.getMov1y2ById(this.data.data.movimientoExcepcion2),
+        movExcepcion3: this._variosService.getMov3ById(this.data.data.movimientoExcepcion3),
+        aplicaIess: this._variosService.getAfectaById(this.data.data.aplica_iess),
+        aplicaIR: this._variosService.getAfectaById(this.data.data.aplica_imp_renta),
+        tipoOperacion: this._variosService.getOperacionById(this.data.data.tipoOperacion),
+        empAfectaIess: this._variosService.getAfectaById(this.data.data.empresa_Afecta_Iess),
       }
       )
       this.cdr.detectChanges();
