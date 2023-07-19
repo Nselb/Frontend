@@ -91,4 +91,25 @@ export class VariosService {
         return 'X';
     }
   }
+  getPeriodoVacaciones(): Observable<Info[]> {
+    return this.client.get<Info[]>(`${this.apiUrl}/PeriodoVacaciones`)
+  }
+  getTipoComision(): Observable<Info[]> {
+    return this.client.get<Info[]>(`${this.apiUrl}/TipoComision`)
+  }
+  getDecimoTercerCuarto(): Observable<Info[]> {
+    return this.client.get<Info[]>(`${this.apiUrl}/DecimoTerceroDecimoCuarto`)
+  }
+  getFondoReserva(): Observable<Info[]> {
+    return this.client.get<Info[]>(`${this.apiUrl}/FondoReserva`)
+  }
+  getOcupaciones(): Observable<Info[]> {
+    return this.client.get<Info[]>(`${this.apiUrl}/Ocupaciones`)
+  }
+  getCategoriaOcupacional(): Observable<Info[]> {
+    return this.client.get<Info[]>(`${this.apiUrl}/CategoriaOcupacional`)
+  }
+  getNivelSalarial(): Observable<Info[]> {
+    return this.client.get<Info[]>(`${this.apiUrl}/NivelSalarial`)
+  }
 }

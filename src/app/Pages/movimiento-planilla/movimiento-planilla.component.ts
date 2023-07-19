@@ -8,6 +8,7 @@ import { PlanillaModalComponent } from 'src/app/Modals/planilla-modal/planilla-m
 import { DialogService } from 'src/app/Services/dialog.service';
 import { MovimientoPlanillaService } from 'src/app/Services/movimiento-planilla.service';
 import { AppComponent } from 'src/app/app.component';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-movimiento-planilla',
@@ -85,5 +86,32 @@ export class MovimientoPlanillaComponent implements AfterViewInit, OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  exportToExcel() {
+    const data: any[][] = [];
+
+    const headersRow = ['Codigo Concepto', 'Concepto', 'Cuenta 1', 'Cuenta 2', 'Cuenta 3', 'Cuenta 4', 'Movimiento Excepcion 1', 'Movimiento Excepcion 2', 'Movimiento Excepcion 3', 'Prioridad', 'Tipo Operacion'];
+    data.push(headersRow);
+
+    this.dataSource.data.forEach((item) => {
+      const rowData = [];
+      rowData.push(item.codigoConcepto);
+      rowData.push(item.concepto);
+      rowData.push(item.cuenta1);
+      rowData.push(item.cuenta2);
+      rowData.push(item.cuenta3);
+      rowData.push(item.cuenta4);
+      rowData.push(item.movimientoExcepcion1);
+      rowData.push(item.movimientoExcepcion2);
+      rowData.push(item.movimientoExcepcion3);
+      rowData.push(item.prioridad);
+      rowData.push(item.tipoOperacion);
+      data.push(rowData);
+    });
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(data);
+    XLSX.utils.book_append_sheet(wb, ws, 'Tabla');
+    XLSX.writeFile(wb, 'Movimiento Planilla.xlsx');
   }
 }

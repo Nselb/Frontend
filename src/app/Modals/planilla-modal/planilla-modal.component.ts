@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Afecta } from 'src/app/Interfaces/afecta';
@@ -28,7 +28,6 @@ export class PlanillaModalComponent implements OnInit {
     private fb: FormBuilder,
     private _planillaService: MovimientoPlanillaService,
     private _variosService: VariosService,
-    private cdr: ChangeDetectorRef,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
 
@@ -51,7 +50,7 @@ export class PlanillaModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.populateSelect();
   }
 
   populateSelect() {
@@ -156,7 +155,9 @@ export class PlanillaModalComponent implements OnInit {
 
   populateForm(): void {
     if (this.data.data) {
-      console.log(this.data.data);
+      console.log(this.tipoOperacion);
+      
+      console.log(this._variosService.getOperacionById(this.data.data.tipoOperacion));
       this.form.patchValue({
         concepto: this.data.data.concepto,
         prioridad: this.data.data.prioridad,
@@ -173,7 +174,6 @@ export class PlanillaModalComponent implements OnInit {
         empAfectaIess: this._variosService.getAfectaById(this.data.data.empresa_Afecta_Iess),
       }
       )
-      this.cdr.detectChanges();
     }
   }
 }

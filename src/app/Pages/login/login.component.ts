@@ -51,13 +51,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     this._usuarioService.get(this.form.value.codigo, this.form.value.contrasena).subscribe(val => {
-      if (val.emisor === this.form.value.codigoEmisor) {
+      if (val.emisor === this.form.value.codigoEmisor && val.observacion === 'INGRESO EXITOSO') {
         localStorage.setItem('user', JSON.stringify(val));
         localStorage.setItem('isLogged', 'true');
         this._navbarService.reloadNavbar();
         this._appComponent.isLogged = true;
         this._router.navigateByUrl('/centros')
-      } else {
+      } else if(val.emisor !== this.form.value.codigoEmisor){
         this._router.navigateByUrl('/login')
         this._dialogService.openDialog(DialogComponent, { title: 'Error', msg: 'Emisor incorrecto!' }, [{ text: 'Cerrar', action: () => { } }])
       }

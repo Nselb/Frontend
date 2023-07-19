@@ -1,7 +1,8 @@
 <div class="mat-elevation-z8">
     <div>
-        <button mat-raised-button color="primary" (click)="createMovimiento()" class="btn-new">Nuevo Trabajador</button>
-        <button (click)="exportToExcel()">Descargar Excel</button>
+        <button mat-raised-button color="primary" (click)="createTrabajador()" class="btn-new">Nuevo Trabajador</button>
+        <button mat-raised-button color="primary" (click)="exportToExcel()">Descargar Excel</button>
+        <button mat-raised-button color="primary" (click)="estadisticasPdf()">Descargar Estadisticas</button>
     </div>
     <mat-form-field appearance="standard">
         <div class="search-bar">
@@ -33,11 +34,14 @@
         <ng-container matColumnDef="Acciones">
             <th mat-header-cell *matHeaderCellDef class="filed-title"> Acciones </th>
             <td mat-cell *matCellDef="let movimiento">
-                <button mat-icon-button color="primary" (click)="editPlanilla(movimiento)">
+                <button mat-icon-button color="primary" (click)="editTrabajador(movimiento)">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="warn" (click)="deleteTrabajador(movimiento)">
                     <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="exportPdf(movimiento)">
+                    <mat-icon>download</mat-icon>
                 </button>
             </td>
         </ng-container>

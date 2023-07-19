@@ -22,9 +22,17 @@ export class TrabajadorModalComponent implements OnInit {
   estadoTrabajador: Info[] = [];
   tipoContrato: Info[] = [];
   tipoCese: Info[] = [];
+  tipoComision: Info[] = [];
   estadoCivil: Info[] = [];
   esReingreso: Info[] = [];
   tipoCuenta: Info[] = [];
+  nivelSalarial: Info[] = [];
+  categoriaOcupacion: Info[] = [];
+  ocupaciones: Info[] = [];
+  periodoVacaciones: Info[] = [];
+  decimoTerceroCuarto: Info[] = [];
+  fondoReserva: Info[] = [];
+
   constructor(
     private fb: FormBuilder,
     private _variosService: VariosService,
@@ -48,7 +56,7 @@ export class TrabajadorModalComponent implements OnInit {
       numeroCuentaBancaria: ['', Validators.required],
       ocupacion: ['', Validators.required],
       centroCostos: ['', Validators.required],
-      nivelSalarial: ['', [Validators.pattern('^[123]$'), Validators.required]],
+      nivelSalarial: ['', Validators.required],
       estadoTrabajador: ['', Validators.required],
       tipoDeContrato: ['', Validators.required],
       tipoCese: ['', Validators.required],
@@ -72,46 +80,97 @@ export class TrabajadorModalComponent implements OnInit {
     this._variosService.getEsReingreso().subscribe({
       next: data => {
         this.esReingreso = data;
+        this.patchForm();
       }
     })
     this._variosService.getEstadoCivil().subscribe({
       next: data => {
         this.estadoCivil = data;
+        this.patchForm();
       }
     })
     this._variosService.getEstadoTrabajador().subscribe({
       next: data => {
         this.estadoTrabajador = data;
+        this.patchForm();
       }
     })
     this._variosService.getGenero().subscribe({
       next: data => {
         this.genero = data;
+        this.patchForm();
       }
     })
     this._ccService.getAll().subscribe({
       next: data => {
         this.centroCostos = data;
+        this.patchForm();
       }
     })
     this._variosService.getTipoCese().subscribe({
       next: data => {
         this.tipoCese = data;
+        this.patchForm();
       }
     })
     this._variosService.getTipoContrato().subscribe({
       next: data => {
         this.tipoContrato = data;
+        this.patchForm();
       }
     })
     this._variosService.getTipoCuenta().subscribe({
       next: data => {
         this.tipoCuenta = data;
+        this.patchForm();
       }
     })
     this._variosService.getTipoTrabajador().subscribe({
       next: data => {
         this.tipoTrabajador = data;
+        this.patchForm();
+      }
+    })
+    this._variosService.getPeriodoVacaciones().subscribe({
+      next: data => {
+        this.periodoVacaciones = data;
+        this.patchForm();
+      }
+    })
+    this._variosService.getTipoComision().subscribe({
+      next: data => {
+        this.tipoComision = data;
+        this.patchForm();
+      }
+    })
+    this._variosService.getDecimoTercerCuarto().subscribe({
+      next: data => {
+        this.decimoTerceroCuarto = data;
+        this.patchForm();
+      }
+    })
+    this._variosService.getFondoReserva().subscribe({
+      next: data => {
+        this.fondoReserva = data;
+        this.patchForm();
+      }
+    })
+    this._variosService.getOcupaciones().subscribe({
+      next: data => {
+        this.ocupaciones = data;
+        this.patchForm();
+      }
+    })
+    this._variosService.getCategoriaOcupacional().subscribe({
+      next: data => {
+        this.categoriaOcupacion = data;
+        this.patchForm();
+      }
+    })
+    this._variosService.getNivelSalarial().subscribe({
+      next: data => {
+        this.nivelSalarial = data;
+        this.patchForm();
       }
     })
   }
@@ -119,8 +178,13 @@ export class TrabajadorModalComponent implements OnInit {
   ngOnInit(): void {
     this.form.get('tipoCese')?.patchValue('N');
     console.log(this.data.data);
+    this.patchForm();
+  }
 
+  patchForm() {
     if (this.data.data) {
+      console.log(this.nivelSalarial);
+      
       this.form.patchValue({
         apellidoMaterno: this.data.data.apellido_Materno,
         apellidoPaterno: this.data.data.apellido_Paterno,
@@ -162,6 +226,7 @@ export class TrabajadorModalComponent implements OnInit {
       )
     }
   }
+
   createTrabajador() {
     const trabajador: Trabajador = {
       apellido_Materno: this.form.value.apellidoMaterno,
